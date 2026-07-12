@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Small Business Snapshot · Intake · 6 Sections · Trail of Joy</title>
+<meta name="description" content="Snapshot intake for Personal Business operators. Six sections mapped to the six AI Agent levels: Identity, Goals, Capabilities, Team, Knowledge, Continuity.">
+<meta name="theme-color" content="#F5F1E8">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23F5F1E8' width='100' height='100' rx='10'/%3E%3Ctext x='50' y='68' font-family='Anton,sans-serif' font-size='52' fill='%2314202E' text-anchor='middle' letter-spacing='-2'%3E01%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F5F1E8;
+  --paper-2:#EFE9DA;
+  --paper-3:#E8DFC8;
+  --ink:#14202E;
+  --ink-2:#1E2B3D;
+  --clay:#B84D2D;
+  --clay-2:#9F3E22;
+  --gold:#C89848;
+  --sage:#5A6E5A;
+  --lavender:#6B5B95;
+  --coral:#D96E5C;
+  --teal:#2C7A7B;
+  --plum:#8B4A6B;
+  --line:#D8CFB8;
+  --line-2:#B8AF98;
+  --muted:#6B7280;
+  --err:#B84D2D;
+  --ok:#5A6E5A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Manrope',-apple-system,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;padding-bottom:120px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.shell{max-width:1160px;margin:0 auto;padding:0 24px}
+@media(min-width:900px){.shell{padding:0 40px}}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0 0.2 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.5;mix-blend-mode:multiply}
+main,nav,section,footer,.progress-bar{position:relative;z-index:2}
+
+/* TOP NAV */
+nav.top{position:sticky;top:0;z-index:60;background:rgba(245,241,232,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav.top .shell{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:38px;height:38px;background:var(--ink);color:var(--paper);border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:16px;letter-spacing:-.03em}
+.brand-name{display:flex;flex-direction:column;line-height:1.05}
+.brand-name .b1{font-family:'Anton',sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:.02em;color:var(--ink)}
+.brand-name .b2{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--clay);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-top:1px}
+.nav-status{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.nav-status b{color:var(--ok)}
+
+/* PROGRESS BAR */
+.progress-bar{background:var(--paper-2);border-bottom:1px solid var(--line);padding:14px 0}
+.progress-inner{display:flex;gap:6px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.progress-step{flex:1;min-width:120px;display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:all .15s;padding:8px 10px;border-radius:2px}
+.progress-step:hover{background:var(--paper-3)}
+.progress-step.active{background:var(--ink);color:var(--paper)}
+.progress-step.done .step-num{background:var(--ok);color:var(--paper);border-color:var(--ok)}
+.progress-step .step-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:transparent;color:var(--ink);border:1.5px solid var(--line-2);font-family:'Anton',sans-serif;font-size:12px;border-radius:50%;flex-shrink:0}
+.progress-step.active .step-num{background:var(--clay);color:var(--paper);border-color:var(--clay)}
+.progress-step .step-line{display:flex;align-items:center;gap:8px}
+.progress-step .step-name{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:-.005em;text-transform:uppercase;line-height:1}
+.progress-step .step-level{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--clay);opacity:.75}
+.progress-step.active .step-level{color:var(--gold);opacity:1}
+
+/* HERO */
+.intake-hero{padding:60px 0 40px;border-bottom:1px solid var(--line)}
+.intake-hero h1{font-family:'Anton',sans-serif;font-size:clamp(38px,6vw,64px);line-height:.95;letter-spacing:-.01em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+.intake-hero h1 .italic{font-family:'Fraunces',serif;font-style:italic;color:var(--clay);text-transform:lowercase;font-weight:400}
+.intake-hero .kicker{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.intake-hero .kicker::before{content:'';width:36px;height:1px;background:var(--clay)}
+.intake-hero p{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(16px,1.8vw,20px);color:var(--muted);line-height:1.5;max-width:820px}
+.intake-hero p b{font-family:'Anton',sans-serif;font-style:normal;color:var(--clay);text-transform:uppercase;font-weight:400;letter-spacing:-.005em}
+
+/* SECTION */
+.section{padding:60px 0;border-bottom:1px solid var(--line);display:none}
+.section.active{display:block}
+.section-head{margin-bottom:36px}
+.section-level{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.section-level::before{content:'◆';font-size:10px;color:var(--gold)}
+.section-level b{color:var(--ink);letter-spacing:.14em}
+.section-name{font-family:'Anton',sans-serif;font-size:clamp(30px,4.5vw,54px);line-height:.98;text-transform:uppercase;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px}
+.section-name .italic{font-family:'Fraunces',serif;font-style:italic;color:var(--clay);text-transform:lowercase;font-weight:400}
+.section-lede{font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--muted);line-height:1.55;max-width:820px}
+.section-lede b{font-family:'Manrope',sans-serif;font-style:normal;color:var(--ink);font-weight:600}
+
+/* FIELDS */
+.field-group{display:grid;grid-template-columns:1fr;gap:20px;margin-top:32px}
+@media(min-width:768px){.field-group{grid-template-columns:1fr 1fr}}
+.field-group.single{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+.field label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);font-weight:700;display:flex;align-items:center;gap:8px}
+.field label .req{color:var(--clay);font-size:8px}
+.field label .opt{color:var(--muted);font-size:9px;font-weight:600;font-style:italic;text-transform:none;letter-spacing:.06em}
+.field .hint{font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--muted);line-height:1.45;margin-top:-2px}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field input[type=url],.field textarea,.field select{width:100%;padding:13px 15px;background:#fff;border:1.5px solid var(--line);border-radius:2px;font-family:'Manrope',sans-serif;font-size:14.5px;color:var(--ink);transition:border-color .15s}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--ink)}
+.field textarea{resize:vertical;min-height:100px;line-height:1.55}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 8l5 5 5-5' stroke='%2314202E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px;appearance:none}
+
+/* NICHE PICKER — Section 1 */
+.niche-picker{margin-top:32px}
+.niche-picker-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.niche-picker-label .req{color:var(--clay);font-size:8px}
+.niche-hint{font-family:'Fraunces',serif;font-style:italic;font-size:13.5px;color:var(--muted);line-height:1.5;margin-bottom:20px}
+.niche-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:768px){.niche-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1024px){.niche-grid{grid-template-columns:repeat(6,1fr)}}
+.niche-btn{background:#fff;border:1.5px solid var(--line);padding:18px 12px;border-radius:2px;cursor:pointer;text-align:center;transition:all .15s;position:relative;display:flex;flex-direction:column;align-items:center;gap:6px}
+.niche-btn:hover{border-color:var(--ink);background:var(--paper-2)}
+.niche-btn.selected{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.niche-btn.selected .niche-status{color:var(--gold)}
+.niche-btn.disabled{opacity:.5;cursor:not-allowed}
+.niche-icon{font-family:'Anton',sans-serif;font-size:28px;letter-spacing:-.02em;line-height:1;color:var(--sage)}
+.niche-btn.selected .niche-icon{color:var(--gold)}
+.niche-name{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:-.005em;text-transform:uppercase;line-height:1.1}
+.niche-status{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:2px}
+
+/* DEMO EMBED */
+.demo-embed{margin-top:28px;background:var(--ink);border-radius:2px;overflow:hidden;display:none;box-shadow:0 20px 60px rgba(20,32,46,.3)}
+.demo-embed.active{display:block}
+.demo-embed-head{padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-bottom:1px solid rgba(200,152,72,.2)}
+.demo-embed-title{font-family:'Anton',sans-serif;font-size:18px;color:var(--paper);letter-spacing:-.005em;text-transform:uppercase;line-height:1;display:flex;align-items:center;gap:12px}
+.demo-embed-title::before{content:'◆';color:var(--gold);font-size:11px}
+.demo-embed-actions{display:flex;gap:10px;flex-wrap:wrap}
+.demo-embed-btn{padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-radius:2px;transition:all .15s;cursor:pointer;background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.demo-embed-btn:hover{background:var(--gold);color:var(--ink)}
+.demo-embed-btn.primary{background:var(--gold);color:var(--ink)}
+.demo-embed-btn.primary:hover{background:transparent;color:var(--gold)}
+.demo-embed-iframe{width:100%;height:640px;border:0;background:#000;display:block}
+.demo-embed-note{padding:12px 24px;background:var(--ink-2);font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(245,241,232,.55);letter-spacing:.1em;text-transform:uppercase}
+.demo-embed-note b{color:var(--gold);font-weight:700}
+
+/* CHECKBOX / RADIO GROUPS */
+.chip-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{background:#fff;border:1.5px solid var(--line);padding:10px 16px;border-radius:2px;cursor:pointer;transition:all .15s;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);font-weight:600;user-select:none}
+.chip:hover{border-color:var(--ink)}
+.chip.selected{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+
+/* TEAM REPEATER */
+.repeater{margin-top:20px}
+.repeater-item{background:#fff;border:1px solid var(--line);padding:20px 22px;border-radius:2px;margin-bottom:12px;position:relative}
+.repeater-item .del{position:absolute;top:12px;right:12px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:4px 8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-radius:2px;cursor:pointer;transition:all .15s}
+.repeater-item .del:hover{color:var(--err);border-color:var(--err)}
+.repeater-add{background:transparent;border:1.5px dashed var(--line-2);color:var(--ink);padding:14px 20px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border-radius:2px;cursor:pointer;width:100%;transition:all .15s;margin-top:8px}
+.repeater-add:hover{border-color:var(--ink);border-style:solid;background:var(--paper-2)}
+
+/* NAV BUTTONS */
+.section-nav{margin-top:44px;display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:32px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border:none;transition:all .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:var(--clay)}
+.btn-ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn:disabled:hover{transform:none}
+
+/* AUTOSAVE INDICATOR */
+.autosave{position:fixed;bottom:16px;right:16px;z-index:100;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:10px 14px;border-radius:2px;font-weight:700;opacity:0;transform:translateY(20px);transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.15);pointer-events:none}
+.autosave.show{opacity:1;transform:translateY(0)}
+.autosave.saved{background:var(--ok)}
+.autosave b{color:var(--gold)}
+
+/* SUCCESS */
+.success-screen{display:none;padding:80px 0;text-align:center}
+.success-screen.active{display:block}
+.success-check{width:80px;height:80px;background:var(--ok);color:var(--paper);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:40px;margin-bottom:32px}
+.success-screen h2{font-family:'Anton',sans-serif;font-size:clamp(38px,6vw,68px);line-height:.95;text-transform:uppercase;letter-spacing:-.01em;color:var(--ink);margin-bottom:20px}
+.success-screen h2 .italic{font-family:'Fraunces',serif;font-style:italic;color:var(--clay);text-transform:lowercase;font-weight:400}
+.success-lede{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(17px,2vw,22px);color:var(--muted);line-height:1.5;max-width:640px;margin:0 auto 40px}
+.success-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+.section-nav-cta-count{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.section-nav-cta-count b{color:var(--clay);font-weight:700}
+
+/* REVIEW SECTION (final) */
+.review-block{background:#fff;border:1px solid var(--line);padding:24px 26px;border-radius:2px;margin-bottom:14px}
+.review-block h4{font-family:'Anton',sans-serif;font-size:18px;color:var(--ink);text-transform:uppercase;letter-spacing:-.005em;margin-bottom:8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.review-block h4 .edit{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--clay);letter-spacing:.14em;text-transform:uppercase;font-weight:700;cursor:pointer;background:transparent;border:none;padding:0}
+.review-block h4 .edit:hover{text-decoration:underline}
+.review-item{font-size:13.5px;color:var(--ink);line-height:1.6;padding:4px 0}
+.review-item .label{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-right:8px}
+.review-item .empty{font-style:italic;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="shell">
+    <a href="/" class="brand">
+      <span class="brand-mark">SB</span>
+      <span class="brand-name"><span class="b1">Small Business Snapshot</span><span class="b2">Intake · 6 Sections</span></span>
+    </a>
+    <div class="nav-status" id="navStatus">◆ Autosaves as you go · <b>Draft</b></div>
+  </div>
+</nav>
+
+<div class="progress-bar">
+  <div class="shell">
+    <div class="progress-inner">
+      <div class="progress-step active" data-step="1" onclick="goTo(1)"><div class="step-line"><span class="step-num">1</span><span class="step-name">Identity</span></div><span class="step-level">◆ Level 1 · MCP</span></div>
+      <div class="progress-step" data-step="2" onclick="goTo(2)"><div class="step-line"><span class="step-num">2</span><span class="step-name">Goals</span></div><span class="step-level">◆ Level 2 · Single-Agent</span></div>
+      <div class="progress-step" data-step="3" onclick="goTo(3)"><div class="step-line"><span class="step-num">3</span><span class="step-name">Capabilities</span></div><span class="step-level">◆ Level 3 · Skills</span></div>
+      <div class="progress-step" data-step="4" onclick="goTo(4)"><div class="step-line"><span class="step-num">4</span><span class="step-name">Team</span></div><span class="step-level">◆ Level 4 · Multi-Agent</span></div>
+      <div class="progress-step" data-step="5" onclick="goTo(5)"><div class="step-line"><span class="step-num">5</span><span class="step-name">Knowledge</span></div><span class="step-level">◆ Level 5 · Agentic RAG</span></div>
+      <div class="progress-step" data-step="6" onclick="goTo(6)"><div class="step-line"><span class="step-num">6</span><span class="step-name">Continuity</span></div><span class="step-level">◆ Level 6 · Memory</span></div>
+      <div class="progress-step" data-step="7" onclick="goTo(7)"><div class="step-line"><span class="step-num">7</span><span class="step-name">Review</span></div><span class="step-level">◆ Final · Submit</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<div class="intake-hero">
+  <div class="shell">
+    <div class="kicker">Personal Business Vertical · 6-Section Intake</div>
+    <h1>Six sections. <span class="italic">one system.</span></h1>
+    <p>Every question maps to one of the six AI Agent levels. What you tell us here becomes the ground floor of your snapshot — and eventually, the ground floor of an automated business system. <b>Autosaves as you type.</b> Come back anytime.</p>
+  </div>
+</div>
+
+<!-- SECTION 1 · IDENTITY · MCP -->
+<section class="section active" data-section="1">
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-level">Level 01 · <b>MCP</b> · Model Context Protocol</div>
+      <h2 class="section-name">Identity.</h2>
+      <p class="section-lede">Who you are, where you live online, and what tools you're already plugged into. This is <b>Level 1 · MCP</b> — the connection layer. Every credential, handle, and platform you list here becomes something the snapshot can point to or pull from.</p>
+    </div>
+
+    <!-- NICHE PICKER -->
+    <div class="niche-picker">
+      <div class="niche-picker-label">Your niche <span class="req">◆ REQUIRED</span></div>
+      <p class="niche-hint">Pick the closest match. The demo below updates so you can see what your snapshot will look like as you fill this out.</p>
+      <div class="niche-grid" id="nicheGrid">
+        <button type="button" class="niche-btn" data-niche="barber" onclick="pickNiche('barber',this)">
+          <div class="niche-icon">◆</div>
+          <div class="niche-name">Barber</div>
+          <div class="niche-status">Demo Ready</div>
+        </button>
+        <button type="button" class="niche-btn" data-niche="trainer" onclick="pickNiche('trainer',this)">
+          <div class="niche-icon">◈</div>
+          <div class="niche-name">Personal<br>Trainer</div>
+          <div class="niche-status">Demo Ready</div>
+        </button>
+        <button type="button" class="niche-btn disabled" data-niche="yoga">
+          <div class="niche-icon">◐</div>
+          <div class="niche-name">Yoga<br>Instructor</div>
+          <div class="niche-status">Queued</div>
+        </button>
+        <button type="button" class="niche-btn disabled" data-niche="realtor">
+          <div class="niche-icon">◉</div>
+          <div class="niche-name">Realtor</div>
+          <div class="niche-status">Queued</div>
+        </button>
+        <button type="button" class="niche-btn disabled" data-niche="wellness">
+          <div class="niche-icon">✦</div>
+          <div class="niche-name">Wellness<br>Coach</div>
+          <div class="niche-status">Queued</div>
+        </button>
+        <button type="button" class="niche-btn disabled" data-niche="talent">
+          <div class="niche-icon">◆</div>
+          <div class="niche-name">Talent<br>Consultant</div>
+          <div class="niche-status">Queued</div>
+        </button>
+      </div>
+
+      <!-- DEMO EMBED (live preview) -->
+      <div class="demo-embed" id="demoEmbed">
+        <div class="demo-embed-head">
+          <div class="demo-embed-title" id="demoTitle">Live demo preview</div>
+          <div class="demo-embed-actions">
+            <a href="#" target="_blank" rel="noopener" class="demo-embed-btn primary" id="demoOpenBtn">Open full screen →</a>
+            <button type="button" class="demo-embed-btn" onclick="closeDemo()">Hide preview</button>
+          </div>
+        </div>
+        <iframe class="demo-embed-iframe" id="demoIframe" title="Snapshot preview" src=""></iframe>
+        <div class="demo-embed-note">◆ Live · This is a real template we've built for this niche. Yours will be brand-matched during production. <b>Everything is customizable.</b></div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field">
+        <label>Your full name <span class="req">◆ REQUIRED</span></label>
+        <input type="text" name="fullName" placeholder="e.g., Gary Maryland Sr.">
+      </div>
+      <div class="field">
+        <label>Business / brand name <span class="req">◆ REQUIRED</span></label>
+        <input type="text" name="brandName" placeholder="e.g., The G.E.M Experience">
+      </div>
+      <div class="field">
+        <label>Tagline / motto <span class="opt">optional</span></label>
+        <input type="text" name="tagline" placeholder="e.g., Confidence. Crafted. One Cut at a Time.">
+      </div>
+      <div class="field">
+        <label>Signature quote / mantra <span class="opt">optional</span></label>
+        <input type="text" name="mantra" placeholder="e.g., I'm not lucky. I'm prepared.">
+      </div>
+      <div class="field">
+        <label>Primary city / location <span class="req">◆ REQUIRED</span></label>
+        <input type="text" name="city" placeholder="e.g., Plano, TX">
+      </div>
+      <div class="field">
+        <label>Business address <span class="opt">if you have a physical shop</span></label>
+        <input type="text" name="address" placeholder="e.g., 3131 Custer Rd Ste 193, Plano TX 75075">
+      </div>
+      <div class="field">
+        <label>Best email <span class="req">◆ REQUIRED</span></label>
+        <input type="email" name="email" placeholder="you@example.com">
+      </div>
+      <div class="field">
+        <label>Phone / text <span class="opt">for follow-up</span></label>
+        <input type="tel" name="phone" placeholder="(555) 555-5555">
+      </div>
+      <div class="field">
+        <label>Instagram handle</label>
+        <input type="text" name="instagram" placeholder="@your.handle">
+      </div>
+      <div class="field">
+        <label>Website (if you have one)</label>
+        <input type="url" name="website" placeholder="https://...">
+      </div>
+      <div class="field">
+        <label>Booking system link</label>
+        <input type="url" name="bookingLink" placeholder="e.g., book.thecut.co/YourHandle">
+      </div>
+      <div class="field">
+        <label>Other socials <span class="opt">TikTok, Threads, LinkedIn, YouTube, etc.</span></label>
+        <input type="text" name="otherSocials" placeholder="Comma-separated handles">
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <div class="section-nav-cta-count"><b>Section 1 of 7</b></div>
+      <button class="btn btn-ink" onclick="goNext()">Save + continue →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 · GOALS · SINGLE-AGENT -->
+<section class="section" data-section="2">
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-level">Level 02 · <b>Single-Agent</b> · Autonomous Outcome</div>
+      <h2 class="section-name">Goals.</h2>
+      <p class="section-lede">A snapshot works best when it drives one clear outcome. This is <b>Level 2 · Single-Agent</b> — you tell us what one thing the site should be optimized for, and every design decision downstream flows from that.</p>
+    </div>
+
+    <div class="field-group single">
+      <div class="field">
+        <label>Primary goal for this snapshot <span class="req">◆ REQUIRED</span></label>
+        <select name="primaryGoal">
+          <option value="">— Pick one —</option>
+          <option value="bookings">Drive bookings (walk-ins, chair seats, appointments)</option>
+          <option value="subscriptions">Sign up members / subscriptions</option>
+          <option value="applications">Collect applications (higher-tier, apply-only offer)</option>
+          <option value="leads">Collect leads / discovery-call requests</option>
+          <option value="community">Build community (email list, IG followers, event signups)</option>
+          <option value="authority">Establish authority (media, speaking, brand partnerships)</option>
+        </select>
+        <div class="hint">Every design decision flows from this. Yes, you can adjust later — but the snapshot builds one direction better than trying to build 5 directions all at once.</div>
+      </div>
+
+      <div class="field">
+        <label>What does success look like 90 days after launch? <span class="req">◆ REQUIRED</span></label>
+        <textarea name="successMetric" placeholder="e.g., 12 new membership sign-ups, 40 new booking clients, waitlist of 20 for Legacy Circle, 3 speaking bookings..."></textarea>
+        <div class="hint">Be specific and small. "20 new clients" beats "grow the business."</div>
+      </div>
+
+      <div class="field">
+        <label>Who is the ideal person the snapshot should convert? <span class="req">◆ REQUIRED</span></label>
+        <textarea name="idealClient" placeholder="Age range, life stage, what they're trying to fix or achieve, why they'd pick you over the next option. Be specific — persona detail makes the copy sharper."></textarea>
+        <div class="hint">The more you write here, the more the site can speak directly to them.</div>
+      </div>
+
+      <div class="field">
+        <label>What's the #1 objection your ideal client has about hiring you? <span class="opt">optional but valuable</span></label>
+        <textarea name="topObjection" placeholder="e.g., 'I've had bad barbers burn me before.' 'It's too expensive for a haircut.' 'My kid won't sit still.' 'I don't know if I'm ready to commit to a program.'"></textarea>
+        <div class="hint">The FAQ + hero framing address this objection head-on.</div>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="btn btn-ghost" onclick="goPrev()">← Back</button>
+      <div class="section-nav-cta-count"><b>Section 2 of 7</b></div>
+      <button class="btn btn-ink" onclick="goNext()">Save + continue →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 · CAPABILITIES · SKILLS -->
+<section class="section" data-section="3">
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-level">Level 03 · <b>Skills</b> · What You Actually Do</div>
+      <h2 class="section-name">Capabilities.</h2>
+      <p class="section-lede">Your services, offers, and pricing. This is <b>Level 3 · Skills</b> — the catalog of what you can do, at what price, in what time. Everything here becomes a pricing card, a service block, or a tier ladder on the site.</p>
+    </div>
+
+    <div class="field-group single">
+      <div class="field">
+        <label>What are your 3–6 core services or offers? <span class="req">◆ REQUIRED</span></label>
+        <textarea name="services" rows="6" placeholder="One per line, name + price + short description:&#10;&#10;Signature Fade — $45 — Precision fade + lineup + hot towel&#10;Beard Sculpt — $35 — Full beard shape + lineup + conditioning&#10;The Chair Membership — $79/mo — 2 fades/month + priority booking&#10;Legacy Grooming — $85 — Full 60-min ceremony experience"></textarea>
+        <div class="hint">The site auto-builds pricing cards from what you write here. Format doesn't have to be perfect — we'll clean it up.</div>
+      </div>
+
+      <div class="field">
+        <label>Do you have tiered offers? <span class="opt">membership + one-off + apply-only</span></label>
+        <textarea name="tiers" rows="4" placeholder="If yes, describe the ladder:&#10;&#10;Tier 1 — Open Chair · pay per visit&#10;Tier 2 — Chair Membership · $79/mo&#10;Tier 3 — Legacy Circle · application-only, higher touch"></textarea>
+      </div>
+
+      <div class="field">
+        <label>What service or offer is most popular? <span class="opt">for the featured card</span></label>
+        <input type="text" name="featuredOffer" placeholder="e.g., Chair Membership · $79/mo">
+        <div class="hint">The site places a "Most Popular" tag on this one.</div>
+      </div>
+
+      <div class="field">
+        <label>Any special community offering / community-service program?</label>
+        <textarea name="communityOffer" rows="3" placeholder="e.g., Low Sensory Sundays for kids on the autism spectrum. Free monthly cuts for veterans. Youth mentorship group. Etc."></textarea>
+        <div class="hint">These get their own hero section on the site — huge differentiator.</div>
+      </div>
+
+      <div class="field">
+        <label>Availability / hours</label>
+        <textarea name="hours" rows="3" placeholder="e.g., Tue–Fri 10a–7p · Sat 9a–6p · Sun by appointment (Low Sensory) · Closed Mondays"></textarea>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="btn btn-ghost" onclick="goPrev()">← Back</button>
+      <div class="section-nav-cta-count"><b>Section 3 of 7</b></div>
+      <button class="btn btn-ink" onclick="goNext()">Save + continue →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 · TEAM · MULTI-AGENT -->
+<section class="section" data-section="4">
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-level">Level 04 · <b>Multi-Agent</b> · Your Ecosystem</div>
+      <h2 class="section-name">Team.</h2>
+      <p class="section-lede">You're not doing this alone. This is <b>Level 4 · Multi-Agent</b> — everyone in your orbit who makes the operation work. Collaborators, referral partners, family in the biz, staff, contractors. The multi-agent network powering you.</p>
+    </div>
+
+    <div class="field-group single">
+      <div class="field">
+        <label>Are you solo or do you have team members?</label>
+        <div class="chip-group" id="teamMode">
+          <label class="chip"><input type="radio" name="teamMode" value="solo"> Solo (just me)</label>
+          <label class="chip"><input type="radio" name="teamMode" value="team"> Team / staff</label>
+          <label class="chip"><input type="radio" name="teamMode" value="collective"> Collective / collaborative</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Team members / staff <span class="opt">add each person</span></label>
+        <div class="hint">Include name, role, and what they specifically bring. Optional but valuable — the site can feature them.</div>
+        <div class="repeater" id="teamRepeater">
+          <div class="repeater-item">
+            <div class="field-group">
+              <div class="field"><label>Name</label><input type="text" name="teamName1" placeholder="Full name"></div>
+              <div class="field"><label>Role / title</label><input type="text" name="teamRole1" placeholder="e.g., Head Barber, Studio Manager"></div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="repeater-add" onclick="addTeamMember()">+ Add another team member</button>
+      </div>
+
+      <div class="field">
+        <label>Key referral partners / collaborators</label>
+        <textarea name="referralPartners" rows="3" placeholder="e.g., Nutritionist we cross-refer, family friend who runs a barbershop next door, PT we send injury cases to, church program we support..."></textarea>
+        <div class="hint">Shows depth of ecosystem. Optional.</div>
+      </div>
+
+      <div class="field">
+        <label>Any brand partners or sponsors?</label>
+        <input type="text" name="brandPartners" placeholder="e.g., Andis, Wahl, Bevel, local high school, community org">
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="btn btn-ghost" onclick="goPrev()">← Back</button>
+      <div class="section-nav-cta-count"><b>Section 4 of 7</b></div>
+      <button class="btn btn-ink" onclick="goNext()">Save + continue →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 · KNOWLEDGE · AGENTIC RAG -->
+<section class="section" data-section="5">
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-level">Level 05 · <b>Agentic RAG</b> · Your Body of Work</div>
+      <h2 class="section-name">Knowledge.</h2>
+      <p class="section-lede">The retrievable proof of what you've done. This is <b>Level 5 · Agentic RAG</b> — credentials, testimonials, media, content library. Every certificate, every win, every article. The knowledge base the snapshot pulls from to make you feel real to a stranger.</p>
+    </div>
+
+    <div class="field-group single">
+      <div class="field">
+        <label>Certifications, degrees, or credentials <span class="req">◆ REQUIRED</span></label>
+        <textarea name="credentials" rows="4" placeholder="One per line:&#10;&#10;Licensed Master Barber (State of TX)&#10;NASM-CPT · Certified Personal Trainer&#10;RYT-500 · Yoga Alliance&#10;Bachelor of Business Administration · UT Dallas&#10;CPR/AED Certified"></textarea>
+        <div class="hint">The site places these in a credentials strip — the small-business equivalent of the football "playing career" strip.</div>
+      </div>
+
+      <div class="field">
+        <label>Years of experience</label>
+        <input type="text" name="yearsExperience" placeholder="e.g., 15+ years">
+      </div>
+
+      <div class="field">
+        <label>Notable clients, wins, or numbers</label>
+        <textarea name="notableWins" rows="4" placeholder="e.g., Cut 3,000+ clients since 2015. Trained 8 NASM graduates. Placed 12 athletes in college programs. $2M in real estate closed last year. Featured on...&#10;&#10;One per line. Numbers make it real."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Client testimonials <span class="opt">even 2–3 helps</span></label>
+        <textarea name="testimonials" rows="6" placeholder="Copy/paste 3+ short client quotes:&#10;&#10;'Gary is the first barber to make me feel like the cut was for the man I'm becoming.' — Marcus J.&#10;&#10;'My son is on the spectrum. Low Sensory Sunday was his first haircut where he smiled.' — Plano parent"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Photo/video assets you can share <span class="opt">optional but game-changing</span></label>
+        <textarea name="media" rows="3" placeholder="Describe what you have:&#10;- Portrait shots of you (headshots, editorial)&#10;- Behind-the-scenes / at-work shots&#10;- Client transformations / before-after&#10;- Location shots&#10;- Video reels&#10;&#10;We'll set up a Dropbox link for you to upload after intake."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Content library <span class="opt">blog, IG posts, podcast, YouTube</span></label>
+        <textarea name="contentLibrary" rows="3" placeholder="What existing content do you have that we can point the site to?&#10;e.g., Weekly IG carousel posts, monthly newsletter, YouTube channel, podcast, book, downloadable guides..."></textarea>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="btn btn-ghost" onclick="goPrev()">← Back</button>
+      <div class="section-nav-cta-count"><b>Section 5 of 7</b></div>
+      <button class="btn btn-ink" onclick="goNext()">Save + continue →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 · CONTINUITY · MEMORY -->
+<section class="section" data-section="6">
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-level">Level 06 · <b>Memory</b> · Client Continuity</div>
+      <h2 class="section-name">Continuity.</h2>
+      <p class="section-lede">How do you keep clients over time? This is <b>Level 6 · Memory</b> — the ongoing relationship layer. Retention systems, memberships, community, family programs. What turns a first cut into a lifetime client into legacy.</p>
+    </div>
+
+    <div class="field-group single">
+      <div class="field">
+        <label>How do clients typically stay in touch after a first visit?</label>
+        <div class="chip-group">
+          <label class="chip"><input type="checkbox" name="retention" value="email"> Email newsletter</label>
+          <label class="chip"><input type="checkbox" name="retention" value="text"> Text updates</label>
+          <label class="chip"><input type="checkbox" name="retention" value="ig"> Instagram / social</label>
+          <label class="chip"><input type="checkbox" name="retention" value="community"> Private community (Discord, Slack, WhatsApp)</label>
+          <label class="chip"><input type="checkbox" name="retention" value="app"> Booking app rebooking</label>
+          <label class="chip"><input type="checkbox" name="retention" value="events"> Events / meetups</label>
+          <label class="chip"><input type="checkbox" name="retention" value="none"> No formal system yet</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Do you have a membership or recurring-billing offer? <span class="opt">describe it</span></label>
+        <textarea name="membership" rows="3" placeholder="e.g., 'Chair Membership' — $79/mo, 2 cuts + priority booking. Or 'Elevate Small Group' — $225/mo, 2×/week strength training + programming."></textarea>
+        <div class="hint">Retention offers are the most valuable thing a snapshot can convert on.</div>
+      </div>
+
+      <div class="field">
+        <label>What percentage of your clients rebook or stay long-term? <span class="opt">rough estimate is fine</span></label>
+        <input type="text" name="retentionRate" placeholder="e.g., 80% of first-time clients rebook within 30 days">
+      </div>
+
+      <div class="field">
+        <label>Is there a "family / next-generation" pattern in your clientele?</label>
+        <textarea name="familyPattern" rows="3" placeholder="e.g., Fathers bringing sons, brothers with brothers, parents with kids, referrals from clients' families. Multi-generation patterns get their own site section."></textarea>
+        <div class="hint">This is one of the most powerful signals for personal-business snapshots.</div>
+      </div>
+
+      <div class="field">
+        <label>What's the long-term vision? <span class="opt">where is the business going in 3–5 years?</span></label>
+        <textarea name="vision" rows="4" placeholder="e.g., 'A second shop in Dallas by 2028. A barber apprenticeship program. A grooming line. A book.'&#10;&#10;e.g., 'Expand Elevate to 3 locations. Certify 10 trainers under the method. Speak at wellness conferences.'"></textarea>
+        <div class="hint">Legacy positioning. The site can hint at it without over-promising.</div>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="btn btn-ghost" onclick="goPrev()">← Back</button>
+      <div class="section-nav-cta-count"><b>Section 6 of 7</b></div>
+      <button class="btn btn-ink" onclick="goNext()">Save + review →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7 · REVIEW + SUBMIT -->
+<section class="section" data-section="7">
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-level">Final · <b>Review</b> · Submit</div>
+      <h2 class="section-name">One last look. <span class="italic">then we build.</span></h2>
+      <p class="section-lede">Review what you've entered. Click <b>Edit</b> on any section to fix anything. When ready, hit submit — you'll get a confirmation email + a booking link for a 30-min kickoff call within 24 hours.</p>
+    </div>
+
+    <div id="reviewContent"></div>
+
+    <div class="field-group single" style="margin-top:36px">
+      <div class="field">
+        <label>Anything else we should know? <span class="opt">optional</span></label>
+        <textarea name="finalNotes" rows="4" placeholder="Special requests, timing constraints, references you want us to check out, brands you love, brands you hate..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Which tier are you leaning toward? <span class="req">◆ REQUIRED</span></label>
+        <div class="chip-group">
+          <label class="chip"><input type="radio" name="tierChoice" value="basic"> Basic Snapshot · $1,200 + $75/mo</label>
+          <label class="chip"><input type="radio" name="tierChoice" value="premium"> Premium Snapshot · $3,500 + $250/mo</label>
+          <label class="chip"><input type="radio" name="tierChoice" value="unsure"> Unsure — help me pick on the kickoff call</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <button class="btn btn-ghost" onclick="goPrev()">← Back</button>
+      <div class="section-nav-cta-count"><b>Section 7 of 7 · Ready to submit</b></div>
+      <button class="btn btn-ink" onclick="submitIntake()">Submit intake →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS -->
+<section class="success-screen" data-section="8">
+  <div class="shell">
+    <div class="success-check">✓</div>
+    <h2>Intake <span class="italic">received.</span></h2>
+    <p class="success-lede">You'll get a confirmation email + a booking link for a 30-min kickoff call in the next 24 hours. If you don't see it, check spam or ping us at <b>hello@tojcampaign.com</b>.</p>
+    <div class="success-actions">
+      <a href="/" class="btn btn-ink">Back to hub →</a>
+      <a href="/demos/barber" target="_blank" rel="noopener" class="btn btn-ghost">Review the demo</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="autosave" id="autosave">◆ <b>Autosaved</b> · you can close this tab</div>
+
+<script>
+const state={current:1,total:7,data:{},niche:null};
+const STORAGE_KEY='tojSbIntake';
+
+// LOAD from URL param (niche=barber) or storage
+(function init(){
+  const params=new URLSearchParams(window.location.search);
+  const preNiche=params.get('niche');
+  const saved=localStorage.getItem(STORAGE_KEY);
+  if(saved){
+    try{
+      const parsed=JSON.parse(saved);
+      state.data=parsed.data||{};
+      state.niche=parsed.niche||null;
+      restoreFields();
+    }catch(e){console.error('Restore failed',e)}
+  }
+  if(preNiche&&(preNiche==='barber'||preNiche==='trainer')){
+    const btn=document.querySelector(`.niche-btn[data-niche="${preNiche}"]`);
+    if(btn)pickNiche(preNiche,btn);
+  }else if(state.niche){
+    const btn=document.querySelector(`.niche-btn[data-niche="${state.niche}"]`);
+    if(btn)pickNiche(state.niche,btn,true);
+  }
+  // Autosave on any input change
+  document.querySelectorAll('input,textarea,select').forEach(el=>{
+    el.addEventListener('input',debounce(save,600));
+    el.addEventListener('change',save);
+  });
+  // Wire chips
+  document.querySelectorAll('.chip input').forEach(input=>{
+    input.addEventListener('change',e=>{
+      const chip=e.target.closest('.chip');
+      if(e.target.type==='radio'){
+        chip.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+      }
+      chip.classList.toggle('selected',e.target.checked);
+      save();
+    });
+  });
+})();
+
+function pickNiche(niche,btn,silent){
+  document.querySelectorAll('.niche-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.niche=niche;
+  const embed=document.getElementById('demoEmbed');
+  const iframe=document.getElementById('demoIframe');
+  const title=document.getElementById('demoTitle');
+  const openBtn=document.getElementById('demoOpenBtn');
+  const routes={
+    barber:{src:'/demos/barber',name:'The G.E.M Experience · Barber Snapshot'},
+    trainer:{src:'/demos/trainer',name:'Elevate Performance · Personal Trainer Snapshot'}
+  };
+  const r=routes[niche];
+  if(r){
+    iframe.src=r.src;
+    title.textContent=r.name;
+    openBtn.href=r.src;
+    embed.classList.add('active');
+  }
+  if(!silent)save();
+}
+function closeDemo(){
+  document.getElementById('demoEmbed').classList.remove('active');
+}
+
+function goTo(n){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.success-screen').forEach(s=>s.classList.remove('active'));
+  const target=document.querySelector(`.section[data-section="${n}"]`);
+  if(target){target.classList.add('active');}
+  document.querySelectorAll('.progress-step').forEach(p=>{
+    const step=parseInt(p.dataset.step,10);
+    p.classList.toggle('active',step===n);
+    p.classList.toggle('done',step<n);
+  });
+  state.current=n;
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===7)renderReview();
+  save();
+}
+function goNext(){if(state.current<state.total)goTo(state.current+1)}
+function goPrev(){if(state.current>1)goTo(state.current-1)}
+
+function collectData(){
+  const data={};
+  document.querySelectorAll('input,textarea,select').forEach(el=>{
+    if(!el.name)return;
+    if(el.type==='checkbox'){
+      if(!data[el.name])data[el.name]=[];
+      if(el.checked)data[el.name].push(el.value);
+    }else if(el.type==='radio'){
+      if(el.checked)data[el.name]=el.value;
+    }else{
+      data[el.name]=el.value;
+    }
+  });
+  return data;
+}
+
+function save(){
+  state.data=collectData();
+  localStorage.setItem(STORAGE_KEY,JSON.stringify({data:state.data,niche:state.niche,ts:Date.now()}));
+  showAutosave();
+}
+function restoreFields(){
+  Object.entries(state.data).forEach(([name,value])=>{
+    const els=document.querySelectorAll(`[name="${name}"]`);
+    els.forEach(el=>{
+      if(el.type==='checkbox'){
+        el.checked=Array.isArray(value)&&value.includes(el.value);
+        if(el.checked)el.closest('.chip')?.classList.add('selected');
+      }else if(el.type==='radio'){
+        el.checked=el.value===value;
+        if(el.checked)el.closest('.chip')?.classList.add('selected');
+      }else{
+        el.value=value;
+      }
+    });
+  });
+}
+function showAutosave(){
+  const el=document.getElementById('autosave');
+  el.classList.add('show','saved');
+  clearTimeout(showAutosave._t);
+  showAutosave._t=setTimeout(()=>el.classList.remove('show'),1800);
+}
+function debounce(fn,ms){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),ms)}}
+
+// TEAM REPEATER
+let teamCount=1;
+function addTeamMember(){
+  teamCount++;
+  const rep=document.getElementById('teamRepeater');
+  const item=document.createElement('div');
+  item.className='repeater-item';
+  item.innerHTML=`
+    <button type="button" class="del" onclick="this.parentElement.remove();save()">Remove</button>
+    <div class="field-group">
+      <div class="field"><label>Name</label><input type="text" name="teamName${teamCount}" placeholder="Full name"></div>
+      <div class="field"><label>Role / title</label><input type="text" name="teamRole${teamCount}" placeholder="e.g., Assistant Trainer"></div>
+    </div>`;
+  rep.appendChild(item);
+  item.querySelectorAll('input').forEach(el=>{
+    el.addEventListener('input',debounce(save,600));
+  });
+}
+
+// REVIEW
+function renderReview(){
+  const d=collectData();
+  const c=document.getElementById('reviewContent');
+  const nicheName={barber:'Barber',trainer:'Personal Trainer',yoga:'Yoga Instructor',realtor:'Realtor',wellness:'Wellness Coach',talent:'Talent Consultant'}[state.niche]||'(not picked)';
+  const blocks=[
+    {n:1,name:'Identity · MCP',rows:[
+      ['Niche',nicheName],
+      ['Full name',d.fullName],
+      ['Brand name',d.brandName],
+      ['Tagline',d.tagline],
+      ['Mantra',d.mantra],
+      ['City',d.city],
+      ['Address',d.address],
+      ['Email',d.email],
+      ['Phone',d.phone],
+      ['Instagram',d.instagram],
+      ['Website',d.website],
+      ['Booking',d.bookingLink]
+    ]},
+    {n:2,name:'Goals · Single-Agent',rows:[
+      ['Primary goal',d.primaryGoal],
+      ['90-day success',d.successMetric],
+      ['Ideal client',d.idealClient],
+      ['Top objection',d.topObjection]
+    ]},
+    {n:3,name:'Capabilities · Skills',rows:[
+      ['Services',d.services],
+      ['Tiers',d.tiers],
+      ['Featured offer',d.featuredOffer],
+      ['Community program',d.communityOffer],
+      ['Hours',d.hours]
+    ]},
+    {n:4,name:'Team · Multi-Agent',rows:[
+      ['Team mode',d.teamMode],
+      ['Team members',collectTeamMembers(d)],
+      ['Referral partners',d.referralPartners],
+      ['Brand partners',d.brandPartners]
+    ]},
+    {n:5,name:'Knowledge · Agentic RAG',rows:[
+      ['Credentials',d.credentials],
+      ['Years experience',d.yearsExperience],
+      ['Notable wins',d.notableWins],
+      ['Testimonials',d.testimonials],
+      ['Media',d.media],
+      ['Content library',d.contentLibrary]
+    ]},
+    {n:6,name:'Continuity · Memory',rows:[
+      ['Retention channels',Array.isArray(d.retention)?d.retention.join(', '):d.retention],
+      ['Membership offer',d.membership],
+      ['Retention rate',d.retentionRate],
+      ['Family pattern',d.familyPattern],
+      ['3–5 year vision',d.vision]
+    ]}
+  ];
+  c.innerHTML=blocks.map(b=>`
+    <div class="review-block">
+      <h4>Section ${b.n} · ${b.name}<button class="edit" onclick="goTo(${b.n})">Edit ↗</button></h4>
+      ${b.rows.map(([l,v])=>`<div class="review-item"><span class="label">${l}</span>${v?String(v).replace(/\n/g,'<br>'):'<span class="empty">— not filled</span>'}</div>`).join('')}
+    </div>`).join('');
+}
+function collectTeamMembers(d){
+  const members=[];
+  for(let i=1;i<=teamCount;i++){
+    if(d[`teamName${i}`])members.push(`${d[`teamName${i}`]} — ${d[`teamRole${i}`]||'(role)'}`);
+  }
+  return members.length?members.join('; '):'';
+}
+
+function submitIntake(){
+  save();
+  const payload={
+    submittedAt:new Date().toISOString(),
+    niche:state.niche,
+    data:state.data
+  };
+  console.log('Intake submitted:',payload);
+  // TODO: POST to /api/intake once backend is wired
+  goTo(8);
+  const successSection=document.querySelector('.success-screen[data-section="8"]');
+  if(successSection)successSection.classList.add('active');
+  document.querySelectorAll('.progress-step').forEach(p=>p.classList.add('done'));
+  document.getElementById('navStatus').innerHTML='◆ <b style="color:var(--ok)">Submitted</b> · thanks';
+}
+</script>
+
+</body>
+</html>
