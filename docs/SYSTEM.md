@@ -22,17 +22,19 @@ This is the single source of truth for how Trail of Joy snapshot sites are built
 12. [How to add a new niche within a vertical](#12-how-to-add-a-new-niche-within-a-vertical)
 13. [Naming conventions](#13-naming-conventions)
 14. [Ops runbook](#14-ops-runbook)
-15. [Change log](#15-change-log)
+15. [Subagent activation matrix](#15-subagent-activation-matrix)
+16. [Change log](#16-change-log)
 
 ---
 
 ## 1. System overview
 
-**Trail of Joy (TOJ) is a productized snapshot-website business.** We ship editorial one-page (Basic) and multi-page (Premium) snapshot sites for operators in three verticals:
+**Trail of Joy (TOJ) is a productized snapshot-website business.** We ship editorial one-page (Basic) and multi-page (Premium) snapshot sites for operators across four verticals:
 
-- **Football + Skills Coaches** — WR, QB, RB, DB, LB, OL/DL specialists
-- **Small Business Operators** — Barbers, personal trainers, yoga, realtors, wellness, talent consultants
-- **Non-Profit + Authority** — Community programs, creators, thought leaders (planned)
+- **Football + Skills Coaches** — WR, QB, RB, DB, LB, OL/DL specialists (LIVE)
+- **Small Business Operators** — Barbers, personal trainers, yoga, realtors, wellness, talent consultants (2 demos ready · deploy pending)
+- **Authority Creators** — Subject Medias, Subject Report, creators + thought leaders (LIVE · 2 external properties)
+- **Non-Profit Leaders** — Community programs, foundations, mission-driven orgs (planned)
 
 Every vertical inherits the same **design system**, **section skeleton**, **intake engine**, and **deploy pipeline**. What flexes is the **palette**, **voice**, and **niche-specific content**.
 
@@ -160,6 +162,8 @@ Every vertical repo follows this structure:
 ├── vercel.json             # Rewrites + clean URLs + headers
 ├── README.md               # Vertical-specific deploy instructions + outreach templates
 ├── .gitignore              # Excludes .vercel, node_modules if any
+├── .claude/                # Claude Code subagent definitions
+│   └── agents/             # Spawnable role agents (copy-lead, qa-lead, kyron-producer)
 ├── LICENSE                 # (optional)
 ├── robots.txt              # SEO controls
 ├── sitemap.xml             # SEO sitemap
@@ -194,9 +198,17 @@ Every vertical repo follows this structure:
 └── docs/                   # System docs (this file lives here in fbtrainer)
     ├── SYSTEM.md
     ├── control-tower.html
+    ├── internal-intake.html         # Kyron-only studio production tool
     ├── coach-outreach.md
     ├── deploy-guide.md
-    └── print-guide.md
+    ├── print-guide.md
+    └── personas/                    # Source of truth for every voice we write in
+        ├── README.md                # Index + how-to-use
+        ├── subject-medias.md        # Brand persona · verbatim from live site
+        ├── subject-report.md        # Brand persona · verbatim from live site
+        ├── kyron-producer.md        # Role · active
+        ├── copy-lead.md             # Role · active
+        └── qa-lead.md               # Role · active (Design + Dev deferred)
 ```
 
 ---
@@ -240,7 +252,9 @@ Every vertical repo follows this structure:
 - **Football:** `fbtrainer.tojcampaign.com` ✅ live
 - **Small Business:** `smallbusiness.tojcampaign.com` ◐ pending
 - **Non-Profit:** `nonprofit.tojcampaign.com` ◇ planned
-- **Authority:** `authority.tojcampaign.com` ◇ planned
+- **Authority:** `authority.tojcampaign.com` ✅ live (hub TBD) — 2 external properties:
+  - `subjectmedias.com` — Kyron's creator platform (own repo)
+  - `subjectreport.com` — Kyron's report platform (own repo)
 
 ---
 
@@ -387,11 +401,57 @@ Always lowercase, hyphenated, no underscores. Use the shortest meaningful slug (
 
 ---
 
-## 15. Change log
+## 15. Subagent activation matrix
+
+**When to spawn which agent.** Read [`.claude/agents/README.md`](../.claude/agents/README.md) for the full how-to. This table is the one-glance lookup.
+
+| Task | Agent | Why |
+|------|-------|-----|
+| Draft any client-facing copy block (hero, meet, pillars, services, testimonials, FAQ, CTA) | **copy-lead** | Reads persona docs first · delivers ONE draft in Kyron's voice |
+| Rewrite / revise copy that misses the voice | **copy-lead** | Same agent for revisions — one revision pass allowed per QA cycle |
+| Pre-ship review of any snapshot before deploy | **qa-lead** | 7-part checklist · read-only tools · sign-off note or blockers report |
+| Verify testimonials/placements before they ship | **qa-lead** | Cross-references Internal Intake `verified` flags |
+| Decide tier assignment for a new client (Basic / Premium / Bespoke) | **kyron-producer** | Producer-authority call · reads Control Tower + Intake first |
+| Decide ship-or-hold on a snapshot with open QA blockers | **kyron-producer** | Producer-authority call |
+| Move a client card in the pipeline | **kyron-producer** | Producer owns the pipeline board |
+| Outreach DM drafting | **copy-lead** | Follows `docs/coach-outreach.md` templates + brand persona |
+| Anything touching Subject Medias or Subject Report copy directly | **kyron-producer** | Kyron-owned properties · needs Producer sign-off |
+
+### Copy-paste spawn phrases
+
+Drop these verbatim into any Claude Code session at this repo — the phrasing matches each agent's `description` field so it activates cleanly:
+
+```
+Use the copy-lead agent to draft the hero + meet section for {client name}.
+
+Have qa-lead run the pre-ship checklist on basic/{snapshot-file}.html
+
+Ask kyron-producer to tier {client name} — they have {Foundation Score total}/50 and want {primary goal}.
+
+Have copy-lead rewrite the FAQ on basic/{snapshot-file}.html — remove any banned phrases from persona docs.
+
+Ask qa-lead to verify every testimonial + placement on basic/{snapshot-file}.html against the intake state for {client name}.
+```
+
+### Tool restrictions (enforced role boundaries)
+
+| Agent | Read | Grep | Glob | WebFetch | Bash | Edit | Write |
+|-------|------|------|------|----------|------|------|-------|
+| copy-lead | ✅ | ✅ | ✅ | ✅ | — | ✅ | ✅ |
+| qa-lead | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| kyron-producer | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+**QA Lead cannot modify files.** That's the guardrail — QA reviews, never rewrites. If a fix is needed, QA sends back to copy-lead or Kyron.
+
+---
+
+## 16. Change log
 
 | Date | Version | Changes | Author |
 |------|---------|---------|--------|
 | 2026-07-11 | v1.0 | Initial SYSTEM.md · 5 layers · 6 AI Agent Levels · fbtrainer + smallbusiness live · 8 demos deployed · Control Tower shipped | Kyron + Claude |
+| 2026-07-12 | v1.1 | Internal Studio Intake shipped at `/internal` · Authority vertical promoted to LIVE (Subject Medias + Subject Report) · `docs/personas/` folder added with 2 brand personas + 3 role personas (Producer · Copy Lead · QA Lead active; Design + Dev deferred) | Kyron + Claude |
+| 2026-07-12 | v1.2 | Claude Code subagents wired at `.claude/agents/` — 3 spawnable role agents (copy-lead, qa-lead, kyron-producer) with tool restrictions enforcing role boundaries (QA gets read-only tools; Copy Lead gets Edit+Write; Producer gets full toolset). Wired to the persona docs as source of truth. | Kyron + Claude |
 
 ---
 
