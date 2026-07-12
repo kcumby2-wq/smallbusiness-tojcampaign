@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOJ Control Tower · Unified Operator Dashboard · Trail of Joy</title>
+<meta name="description" content="Operator command center for Trail of Joy. All verticals. All demos. All routes. Pipeline in one place.">
+<meta name="theme-color" content="#0A1420">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230A1420' width='100' height='100' rx='10'/%3E%3Ctext x='50' y='68' font-family='Anton,sans-serif' font-size='40' fill='%23C89848' text-anchor='middle' letter-spacing='-2'%3ETOJ%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0A1420;
+  --bg-2:#141F30;
+  --bg-3:#1E2B3D;
+  --bg-4:#28374B;
+  --paper:#F5F1E8;
+  --paper-dim:rgba(245,241,232,.75);
+  --paper-dimmer:rgba(245,241,232,.5);
+  --paper-line:rgba(245,241,232,.12);
+  --clay:#B84D2D;
+  --gold:#C89848;
+  --sage:#7BA07B;
+  --lavender:#9B87C2;
+  --coral:#E68970;
+  --ok:#7BA07B;
+  --warn:#E6BA47;
+  --err:#E67052;
+  --line:#2A3547;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--paper);font-family:'Manrope',-apple-system,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;padding-bottom:80px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.shell{max-width:1400px;margin:0 auto;padding:0 24px}
+@media(min-width:900px){.shell{padding:0 40px}}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.85 0 0 0 0 0.7 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.4;mix-blend-mode:overlay}
+main,nav,section,footer,.tower-header{position:relative;z-index:2}
+
+/* HEADER */
+.tower-header{background:linear-gradient(180deg,var(--bg-2),var(--bg));border-bottom:1px solid var(--gold);padding:40px 0 32px;position:relative;overflow:hidden}
+.tower-header::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(200,152,72,.1),transparent 65%);pointer-events:none}
+.tower-header .shell{position:relative;z-index:2}
+.tower-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+.tower-brand{display:flex;align-items:center;gap:16px}
+.tower-mark{width:56px;height:56px;background:var(--bg-3);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:20px;letter-spacing:-.03em;border:1.5px solid var(--gold);border-radius:2px}
+.tower-brand-text{display:flex;flex-direction:column;line-height:1.05}
+.tower-brand-text .b1{font-family:'Anton',sans-serif;font-size:20px;color:var(--paper);text-transform:uppercase;letter-spacing:.02em}
+.tower-brand-text .b2{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-top:2px}
+.tower-status{display:flex;gap:10px;flex-wrap:wrap}
+.status-pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:8px 12px;border-radius:2px;background:var(--bg-3);color:var(--paper-dim);border:1px solid var(--line);display:inline-flex;align-items:center;gap:6px}
+.status-pill.ok{border-color:var(--ok);color:var(--ok)}
+.status-pill.warn{border-color:var(--warn);color:var(--warn)}
+.status-pill.err{border-color:var(--err);color:var(--err)}
+.status-pill::before{content:'●';font-size:10px;line-height:1}
+
+h1{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(46px,7vw,84px);line-height:.92;letter-spacing:-.01em;text-transform:uppercase;color:var(--paper);margin-bottom:16px}
+h1 .italic{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);text-transform:lowercase;font-weight:400}
+.tower-lede{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(17px,2vw,20px);color:var(--paper-dim);line-height:1.5;max-width:820px}
+.tower-lede b{font-family:'Anton',sans-serif;font-style:normal;color:var(--gold);text-transform:uppercase;font-weight:400;letter-spacing:-.005em}
+
+/* KPI STRIP */
+.kpi-strip{background:var(--bg-2);border-bottom:1px solid var(--line);padding:32px 0}
+.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;text-align:center}
+@media(min-width:640px){.kpi-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1024px){.kpi-grid{grid-template-columns:repeat(6,1fr)}}
+.kpi{background:var(--bg-3);border:1px solid var(--line);padding:20px 16px;border-radius:2px}
+.kpi-num{font-family:'Anton',sans-serif;font-size:clamp(28px,4vw,42px);color:var(--gold);letter-spacing:-.02em;line-height:1;margin-bottom:6px}
+.kpi-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--paper-dim);letter-spacing:.16em;text-transform:uppercase;font-weight:700;line-height:1.35}
+
+/* SECTION */
+section.tower-section{padding:60px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.section-title{font-family:'Anton',sans-serif;font-size:clamp(28px,4vw,42px);line-height:.98;letter-spacing:-.005em;text-transform:uppercase;color:var(--paper)}
+.section-title .italic{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);text-transform:lowercase;font-weight:400}
+.section-kicker{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.section-kicker::before{content:'◆';font-size:10px}
+
+/* VERTICALS */
+.vert-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:900px){.vert-grid{grid-template-columns:1fr 1fr}}
+.vert-card{background:var(--bg-3);border:1px solid var(--line);border-radius:2px;padding:32px 28px;position:relative;transition:all .2s}
+.vert-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.vert-card.live::before{content:'';position:absolute;top:0;left:28px;right:28px;height:2px;background:var(--ok)}
+.vert-card.pending::before{content:'';position:absolute;top:0;left:28px;right:28px;height:2px;background:var(--warn)}
+.vert-card.planned::before{content:'';position:absolute;top:0;left:28px;right:28px;height:2px;background:var(--paper-line)}
+.vert-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.vert-name{font-family:'Anton',sans-serif;font-size:26px;color:var(--paper);text-transform:uppercase;letter-spacing:-.005em;line-height:1}
+.vert-name .italic{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);text-transform:lowercase;font-weight:400}
+.vert-status{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:4px 8px;border-radius:2px}
+.vert-status.live{background:rgba(123,160,123,.15);color:var(--ok);border:1px solid rgba(123,160,123,.3)}
+.vert-status.pending{background:rgba(230,186,71,.15);color:var(--warn);border:1px solid rgba(230,186,71,.3)}
+.vert-status.planned{background:rgba(245,241,232,.05);color:var(--paper-dim);border:1px solid var(--line)}
+.vert-desc{font-family:'Fraunces',serif;font-style:italic;font-size:14.5px;color:var(--paper-dim);line-height:1.5;margin-bottom:20px}
+.vert-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.vert-meta-item{background:var(--bg-4);padding:10px 12px;border-radius:2px}
+.vert-meta-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--paper-dim);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.vert-meta-val{font-family:'Anton',sans-serif;font-size:18px;color:var(--paper);letter-spacing:-.005em;line-height:1}
+.vert-urls{margin-bottom:20px}
+.vert-url{display:block;padding:9px 12px;background:var(--bg-4);border:1px solid var(--line);border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--paper);letter-spacing:.04em;margin-bottom:6px;transition:all .15s}
+.vert-url:hover{border-color:var(--gold);color:var(--gold);transform:translateX(3px)}
+.vert-url::before{content:'→ ';color:var(--gold);font-weight:700}
+.vert-url .path{color:var(--paper-dim)}
+.vert-actions{display:flex;flex-wrap:wrap;gap:8px;padding-top:16px;border-top:1px solid var(--line)}
+.action-btn{padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-radius:2px;transition:all .15s;cursor:pointer;background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.action-btn:hover{background:var(--gold);color:var(--bg)}
+.action-btn.primary{background:var(--gold);color:var(--bg)}
+.action-btn.primary:hover{background:transparent;color:var(--gold)}
+
+/* DEMOS TABLE */
+.demo-table{background:var(--bg-3);border:1px solid var(--line);border-radius:2px;overflow:hidden}
+.demo-row{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:20px 24px;border-bottom:1px solid var(--line);transition:background .15s;align-items:center}
+.demo-row:last-child{border-bottom:none}
+.demo-row:hover{background:var(--bg-4)}
+@media(min-width:768px){.demo-row{grid-template-columns:60px 1.4fr 1fr auto}}
+.demo-num{font-family:'Anton',sans-serif;font-size:28px;color:var(--gold);letter-spacing:-.02em;line-height:1;opacity:.85}
+.demo-info h4{font-family:'Anton',sans-serif;font-size:18px;color:var(--paper);text-transform:uppercase;letter-spacing:-.005em;line-height:1;margin-bottom:6px}
+.demo-info h4 .italic{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);text-transform:lowercase;font-weight:400}
+.demo-info .meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--paper-dim);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.demo-info .meta b{color:var(--gold);font-weight:700}
+.demo-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--paper-dim);letter-spacing:.05em}
+.demo-url b{color:var(--paper)}
+.demo-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.demo-action{padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-radius:2px;background:transparent;color:var(--gold);border:1px solid var(--gold);transition:all .15s}
+.demo-action:hover{background:var(--gold);color:var(--bg)}
+
+/* PIPELINE */
+.pipeline-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:768px){.pipeline-grid{grid-template-columns:repeat(5,1fr)}}
+.pipe-col{background:var(--bg-3);border:1px solid var(--line);border-radius:2px;padding:16px 14px;min-height:200px}
+.pipe-col-head{padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.pipe-col-name{font-family:'Anton',sans-serif;font-size:15px;color:var(--paper);text-transform:uppercase;letter-spacing:-.005em;line-height:1;margin-bottom:4px}
+.pipe-col-count{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.pipe-card{background:var(--bg-4);border:1px solid var(--line);border-left:3px solid var(--gold);padding:10px 12px;border-radius:2px;margin-bottom:8px;font-size:12.5px;line-height:1.4}
+.pipe-card b{font-family:'Anton',sans-serif;font-size:14px;color:var(--paper);text-transform:uppercase;letter-spacing:-.005em;font-weight:400;display:block;margin-bottom:3px}
+.pipe-card .who{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.pipe-card .when{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--paper-dim);letter-spacing:.1em;margin-top:4px}
+.pipe-card.next{border-left-color:var(--sage)}
+.pipe-card.warm{border-left-color:var(--warn)}
+.pipe-card.hot{border-left-color:var(--coral)}
+
+/* QUICK ACTIONS */
+.actions-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:640px){.actions-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.actions-grid{grid-template-columns:repeat(3,1fr)}}
+.quick-action{background:var(--bg-3);border:1px solid var(--line);border-radius:2px;padding:24px 22px;transition:all .2s;display:block}
+.quick-action:hover{border-color:var(--gold);transform:translateY(-3px);background:var(--bg-4)}
+.qa-icon{font-family:'Anton',sans-serif;font-size:36px;color:var(--gold);letter-spacing:-.02em;line-height:1;margin-bottom:14px;opacity:.9}
+.quick-action h4{font-family:'Anton',sans-serif;font-size:20px;color:var(--paper);text-transform:uppercase;letter-spacing:-.005em;margin-bottom:8px}
+.quick-action p{font-size:13.5px;color:var(--paper-dim);line-height:1.55;margin-bottom:12px}
+.qa-cta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.qa-cta::after{content:'→';transition:transform .15s}
+.quick-action:hover .qa-cta::after{transform:translateX(4px)}
+
+/* ARCHITECTURE MAP */
+.arch-map{background:var(--bg-3);border:1px solid var(--line);border-radius:2px;padding:36px 32px;overflow-x:auto}
+.arch-title{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:24px;text-align:center}
+.arch-flow{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.9;color:var(--paper);white-space:pre;min-width:640px}
+.arch-flow .layer{color:var(--gold);font-weight:700}
+.arch-flow .box{color:var(--sage)}
+.arch-flow .arrow{color:var(--clay)}
+.arch-flow .comment{color:var(--paper-dim);font-style:italic}
+
+/* FOOTER */
+footer{padding:40px 0 20px;background:var(--bg-2);border-top:1px solid var(--gold);text-align:center}
+.foot-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--paper-dimmer);letter-spacing:.14em;text-transform:uppercase;line-height:1.7}
+.foot-note b{color:var(--gold);font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="tower-header">
+  <div class="shell">
+    <div class="tower-top">
+      <div class="tower-brand">
+        <span class="tower-mark">TOJ</span>
+        <div class="tower-brand-text">
+          <span class="b1">TOJ Control Tower</span>
+          <span class="b2">Operator Dashboard · v1</span>
+        </div>
+      </div>
+      <div class="tower-status">
+        <span class="status-pill ok">fbtrainer live</span>
+        <span class="status-pill warn">smallbiz pending</span>
+        <span class="status-pill">nonprofit planned</span>
+        <span class="status-pill">authority planned</span>
+      </div>
+    </div>
+    <h1>One tower.<br><span class="italic">the whole business.</span></h1>
+    <p class="tower-lede">Every vertical. Every demo. Every route. Every pipeline card. <b>The Trail of Joy operator command center.</b> Bookmark this page — it's how you run the shop from any laptop, any morning.</p>
+  </div>
+</header>
+
+<div class="kpi-strip">
+  <div class="shell">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-num">2</div><div class="kpi-label">Verticals Live</div></div>
+      <div class="kpi"><div class="kpi-num">8</div><div class="kpi-label">Live Demos</div></div>
+      <div class="kpi"><div class="kpi-num">6</div><div class="kpi-label">Agent Levels</div></div>
+      <div class="kpi"><div class="kpi-num">4</div><div class="kpi-label">Verticals Planned</div></div>
+      <div class="kpi"><div class="kpi-num">0</div><div class="kpi-label">Paying Clients</div></div>
+      <div class="kpi"><div class="kpi-num">4</div><div class="kpi-label">Outreach Live</div></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- VERTICALS -->
+<section class="tower-section">
+  <div class="shell">
+    <div class="section-kicker">The Verticals</div>
+    <div class="section-head">
+      <h2 class="section-title">Every vertical. <span class="italic">accounted for.</span></h2>
+    </div>
+    <div class="vert-grid">
+      <div class="vert-card live">
+        <div class="vert-head">
+          <div class="vert-name">Football + Skills <span class="italic">Coaches</span></div>
+          <span class="vert-status live">◆ Live</span>
+        </div>
+        <p class="vert-desc">Position-specific coach snapshots. WR, QB, RB, DB, LB, OL/DL covered. 8 reference demos deployed.</p>
+        <div class="vert-meta">
+          <div class="vert-meta-item"><div class="vert-meta-label">Domain</div><div class="vert-meta-val">fbtrainer.tojcampaign.com</div></div>
+          <div class="vert-meta-item"><div class="vert-meta-label">Demos</div><div class="vert-meta-val">8 · 6 positions</div></div>
+        </div>
+        <div class="vert-urls">
+          <a href="https://fbtrainer.tojcampaign.com/" target="_blank" rel="noopener" class="vert-url"><span class="path">Mothership</span> · /</a>
+          <a href="https://fbtrainer.tojcampaign.com/intake" target="_blank" rel="noopener" class="vert-url"><span class="path">6-Section Intake</span> · /intake</a>
+          <a href="https://fbtrainer.tojcampaign.com/tier-quiz" target="_blank" rel="noopener" class="vert-url"><span class="path">Tier Selector</span> · /tier-quiz</a>
+        </div>
+        <div class="vert-actions">
+          <a href="https://github.com/kcumby2-wq/fbtrainer-tojcampaign" target="_blank" rel="noopener" class="action-btn">GitHub</a>
+          <a href="https://vercel.com/kcumby2-9563s-projects/fbtrainer-tojcampaign" target="_blank" rel="noopener" class="action-btn">Vercel</a>
+          <a href="https://fbtrainer.tojcampaign.com/" target="_blank" rel="noopener" class="action-btn primary">Visit →</a>
+        </div>
+      </div>
+
+      <div class="vert-card pending">
+        <div class="vert-head">
+          <div class="vert-name">Small Business <span class="italic">Operators</span></div>
+          <span class="vert-status pending">◆ Deploy Pending</span>
+        </div>
+        <p class="vert-desc">Personal business snapshots. Barbers, personal trainers, yoga, realtors, wellness, talent. 2 reference demos ready.</p>
+        <div class="vert-meta">
+          <div class="vert-meta-item"><div class="vert-meta-label">Domain</div><div class="vert-meta-val">smallbusiness.tojcampaign.com</div></div>
+          <div class="vert-meta-item"><div class="vert-meta-label">Demos</div><div class="vert-meta-val">2 · 6 niches</div></div>
+        </div>
+        <div class="vert-urls">
+          <a href="#" class="vert-url"><span class="path">Mothership</span> · / <em style="color:var(--warn)">(pending push)</em></a>
+          <a href="#" class="vert-url"><span class="path">6-Section Intake</span> · /intake <em style="color:var(--warn)">(pending push)</em></a>
+        </div>
+        <div class="vert-actions">
+          <a href="#" class="action-btn">GitHub (create)</a>
+          <a href="#" class="action-btn">Vercel (deploy)</a>
+          <a href="#pipeline" class="action-btn primary">Next steps →</a>
+        </div>
+      </div>
+
+      <div class="vert-card planned">
+        <div class="vert-head">
+          <div class="vert-name">Non-Profit <span class="italic">Leaders</span></div>
+          <span class="vert-status planned">◆ Planned</span>
+        </div>
+        <p class="vert-desc">Cause-forward snapshots. Community programs, foundations, mission-driven org. Template built when first client signs.</p>
+        <div class="vert-meta">
+          <div class="vert-meta-item"><div class="vert-meta-label">Domain</div><div class="vert-meta-val">nonprofit.tojcampaign.com</div></div>
+          <div class="vert-meta-item"><div class="vert-meta-label">Demos</div><div class="vert-meta-val">0 · queued</div></div>
+        </div>
+        <div class="vert-urls">
+          <a href="#" class="vert-url"><span class="path">— Not yet built</span></a>
+        </div>
+        <div class="vert-actions">
+          <a href="#" class="action-btn">Vertical spec (TBD)</a>
+        </div>
+      </div>
+
+      <div class="vert-card planned">
+        <div class="vert-head">
+          <div class="vert-name">Authority <span class="italic">Creators</span></div>
+          <span class="vert-status planned">◆ Planned</span>
+        </div>
+        <p class="vert-desc">Subject Medias, Subject Report, thought-leader creators + specialty trainers. Media/brand-forward positioning.</p>
+        <div class="vert-meta">
+          <div class="vert-meta-item"><div class="vert-meta-label">Domain</div><div class="vert-meta-val">authority.tojcampaign.com</div></div>
+          <div class="vert-meta-item"><div class="vert-meta-label">Demos</div><div class="vert-meta-val">0 · queued</div></div>
+        </div>
+        <div class="vert-urls">
+          <a href="#" class="vert-url"><span class="path">— Not yet built</span></a>
+        </div>
+        <div class="vert-actions">
+          <a href="#" class="action-btn">Vertical spec (TBD)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO CATALOG -->
+<section class="tower-section">
+  <div class="shell">
+    <div class="section-kicker">Demo Catalog · 8 Live · 6 Positions</div>
+    <div class="section-head">
+      <h2 class="section-title">All demos. <span class="italic">one table.</span></h2>
+    </div>
+    <div class="demo-table">
+      <div class="demo-row">
+        <div class="demo-num">01</div>
+        <div class="demo-info"><h4>Sky's The Limit <span class="italic">Football</span></h4><div class="meta"><b>WR</b> · Premium · Coach Margin Hooks · Plano TX</div></div>
+        <div class="demo-url"><b>fbtrainer</b>.tojcampaign.com<b>/demos/skysthelimit</b></div>
+        <div class="demo-actions"><a href="https://fbtrainer.tojcampaign.com/demos/skysthelimit" target="_blank" rel="noopener" class="demo-action">Open →</a></div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-num">02</div>
+        <div class="demo-info"><h4>QB Craft</h4><div class="meta"><b>QB</b> · Basic · Faith-forward · Fort Worth TX</div></div>
+        <div class="demo-url"><b>fbtrainer</b>.tojcampaign.com<b>/demos/qbcraft</b></div>
+        <div class="demo-actions"><a href="https://fbtrainer.tojcampaign.com/demos/qbcraft" target="_blank" rel="noopener" class="demo-action">Open →</a></div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-num">03</div>
+        <div class="demo-info"><h4>SpinCity <span class="italic">QB</span></h4><div class="meta"><b>QB</b> · Basic · Young D1 · Austin/Dallas</div></div>
+        <div class="demo-url"><b>fbtrainer</b>.tojcampaign.com<b>/demos/spincity-qb</b></div>
+        <div class="demo-actions"><a href="https://fbtrainer.tojcampaign.com/demos/spincity-qb" target="_blank" rel="noopener" class="demo-action">Open →</a></div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-num">04</div>
+        <div class="demo-info"><h4>3Hunnid</h4><div class="meta"><b>RB</b> · Basic · High-profile · #DA3WAY · J Hicks</div></div>
+        <div class="demo-url"><b>fbtrainer</b>.tojcampaign.com<b>/demos/3hunnid</b></div>
+        <div class="demo-actions"><a href="https://fbtrainer.tojcampaign.com/demos/3hunnid" target="_blank" rel="noopener" class="demo-action">Open →</a></div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-num">05</div>
+        <div class="demo-info"><h4>Big Griff <span class="italic">Football</span></h4><div class="meta"><b>RB</b> · Basic · Local community · Princeton TX</div></div>
+        <div class="demo-url"><b>fbtrainer</b>.tojcampaign.com<b>/demos/big-griff</b></div>
+        <div class="demo-actions"><a href="https://fbtrainer.tojcampaign.com/demos/big-griff" target="_blank" rel="noopener" class="demo-action">Open →</a></div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-num">06</div>
+        <div class="demo-info"><h4>Locked In <span class="italic">DB Academy</span></h4><div class="meta"><b>DB</b> · Basic · Former SEC · Nashville TN</div></div>
+        <div class="demo-url"><b>fbtrainer</b>.tojcampaign.com<b>/demos/lockedin</b></div>
+        <div class="demo-actions"><a href="https://fbtrainer.tojcampaign.com/demos/lockedin" target="_blank" rel="noopener" class="demo-action">Open →</a></div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-num">07</div>
+        <div class="demo-info"><h4>The <span class="italic">MIKE</span></h4><div class="meta"><b>LB</b> · Basic · Former NFL · Charlotte NC</div></div>
+        <div class="demo-url"><b>fbtrainer</b>.tojcampaign.com<b>/demos/mike</b></div>
+        <div class="demo-actions"><a href="https://fbtrainer.tojcampaign.com/demos/mike" target="_blank" rel="noopener" class="demo-action">Open →</a></div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-num">08</div>
+        <div class="demo-info"><h4>Trench <span class="italic">Standard</span></h4><div class="meta"><b>OL/DL</b> · Basic · Former Alabama · Birmingham AL</div></div>
+        <div class="demo-url"><b>fbtrainer</b>.tojcampaign.com<b>/demos/trench</b></div>
+        <div class="demo-actions"><a href="https://fbtrainer.tojcampaign.com/demos/trench" target="_blank" rel="noopener" class="demo-action">Open →</a></div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-num">09</div>
+        <div class="demo-info"><h4>Elevate <span class="italic">Performance</span></h4><div class="meta"><b>Personal Trainer</b> · Basic · Austin TX <em style="color:var(--warn)">(smallbiz — pending deploy)</em></div></div>
+        <div class="demo-url"><b>smallbusiness</b>.tojcampaign.com<b>/demos/trainer</b></div>
+        <div class="demo-actions"><a href="#" class="demo-action">Pending →</a></div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-num">10</div>
+        <div class="demo-info"><h4>The <span class="italic">G.E.M</span> Experience</h4><div class="meta"><b>Barber</b> · Basic · Gary Maryland Sr · Plano TX <em style="color:var(--warn)">(smallbiz — pending deploy)</em></div></div>
+        <div class="demo-url"><b>smallbusiness</b>.tojcampaign.com<b>/demos/barber</b></div>
+        <div class="demo-actions"><a href="#" class="demo-action">Pending →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="tower-section" id="pipeline">
+  <div class="shell">
+    <div class="section-kicker">Coach + Client Pipeline</div>
+    <div class="section-head">
+      <h2 class="section-title">Every outreach. <span class="italic">on the board.</span></h2>
+    </div>
+    <div class="pipeline-grid">
+      <div class="pipe-col">
+        <div class="pipe-col-head">
+          <div class="pipe-col-name">Prospects</div>
+          <div class="pipe-col-count">4 lined up</div>
+        </div>
+        <div class="pipe-card"><b>Tyler Drake-Knoop</b><div class="who">SpinCity QB · Austin</div><div class="when">Ready to DM</div></div>
+        <div class="pipe-card"><b>Maverick McIvor</b><div class="who">QB Craft · Fort Worth</div><div class="when">Ready to DM</div></div>
+        <div class="pipe-card"><b>J Hicks</b><div class="who">3Hunnid · #DA3WAY</div><div class="when">Ready to DM</div></div>
+        <div class="pipe-card"><b>Zay Griff</b><div class="who">Big Griff · Princeton TX</div><div class="when">Ready to DM</div></div>
+      </div>
+      <div class="pipe-col">
+        <div class="pipe-col-head">
+          <div class="pipe-col-name">Contacted</div>
+          <div class="pipe-col-count">0 in flight</div>
+        </div>
+        <div class="pipe-card warm"><b>Gary Maryland Sr</b><div class="who">The G.E.M · Barber Plano</div><div class="when">Pending smallbiz deploy</div></div>
+      </div>
+      <div class="pipe-col">
+        <div class="pipe-col-head">
+          <div class="pipe-col-name">Reviewed</div>
+          <div class="pipe-col-count">0 reactions</div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="pipe-col-head">
+          <div class="pipe-col-name">Interested</div>
+          <div class="pipe-col-count">0 warm</div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="pipe-col-head">
+          <div class="pipe-col-name">Signed</div>
+          <div class="pipe-col-count">0 clients · goal 3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK ACTIONS -->
+<section class="tower-section">
+  <div class="shell">
+    <div class="section-kicker">Quick Actions</div>
+    <div class="section-head">
+      <h2 class="section-title">One click. <span class="italic">operator moves.</span></h2>
+    </div>
+    <div class="actions-grid">
+      <a href="https://fbtrainer.tojcampaign.com/intake" target="_blank" rel="noopener" class="quick-action">
+        <div class="qa-icon">◆</div>
+        <h4>Preview the Coach Intake</h4>
+        <p>Fill it out end-to-end at least once a month to feel what prospects feel. Check that all 6 sections + demo embeds work.</p>
+        <span class="qa-cta">Open intake</span>
+      </a>
+      <a href="https://fbtrainer.tojcampaign.com/tier-quiz" target="_blank" rel="noopener" class="quick-action">
+        <div class="qa-icon">◈</div>
+        <h4>Test the Tier Selector</h4>
+        <p>Take the quiz. Confirm both outputs (Basic + Premium) still land right. Update if pricing shifts.</p>
+        <span class="qa-cta">Open selector</span>
+      </a>
+      <a href="https://vercel.com/kcumby2-9563s-projects" target="_blank" rel="noopener" class="quick-action">
+        <div class="qa-icon">▲</div>
+        <h4>Vercel Deployments</h4>
+        <p>All projects in one dashboard. Check last-deploy status. Roll back if a push breaks anything.</p>
+        <span class="qa-cta">Open Vercel</span>
+      </a>
+      <a href="https://github.com/kcumby2-wq" target="_blank" rel="noopener" class="quick-action">
+        <div class="qa-icon">◐</div>
+        <h4>GitHub Repos</h4>
+        <p>Both repos + any new ones. Watch for open issues, PRs, or activity. Pull latest before editing locally.</p>
+        <span class="qa-cta">Open GitHub</span>
+      </a>
+      <a href="https://fbtrainer.tojcampaign.com/sales/comparison" target="_blank" rel="noopener" class="quick-action">
+        <div class="qa-icon">▤</div>
+        <h4>Sales Sheets (Print)</h4>
+        <p>4 printable one-pagers — Comparison, Pricing, Timeline, Deliverables. Ctrl+P → save as PDF for prospects.</p>
+        <span class="qa-cta">Open sheet</span>
+      </a>
+      <a href="./SYSTEM.md" target="_blank" rel="noopener" class="quick-action">
+        <div class="qa-icon">◆</div>
+        <h4>System Architecture</h4>
+        <p>The unified spec every vertical follows: design tokens, section skeleton, intake engine, deploy flow. Read before starting a new vertical.</p>
+        <span class="qa-cta">Open SYSTEM.md</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE MAP -->
+<section class="tower-section">
+  <div class="shell">
+    <div class="section-kicker">Unified Architecture</div>
+    <div class="section-head">
+      <h2 class="section-title">One system. <span class="italic">many verticals.</span></h2>
+    </div>
+    <div class="arch-map">
+      <div class="arch-title">◆ How the whole thing fits together ◆</div>
+<pre class="arch-flow"><span class="layer">┌── LAYER 1 · Mothership ──────────────────────────────────────────┐</span>
+│                                                                  │
+│   <span class="box">tojcampaign.com</span>  <span class="comment">← brand hub, mission, vertical routing</span>          │
+│                                                                  │
+<span class="layer">└──────────────────────────────────────────────────────────────────┘</span>
+                             <span class="arrow">│</span>
+              ┌──────────────┼──────────────┬────────────────┐
+              <span class="arrow">▼</span>              <span class="arrow">▼</span>              <span class="arrow">▼</span>                <span class="arrow">▼</span>
+<span class="layer">┌── LAYER 2 · Verticals ─────────────────────────────────────────────┐</span>
+│                                                                    │
+│  <span class="box">fbtrainer.</span>       <span class="box">smallbusiness.</span>    <span class="box">nonprofit.</span>     <span class="box">authority.</span>     │
+│  tojcampaign     tojcampaign        tojcampaign      tojcampaign    │
+│  <span class="comment">(live)</span>          <span class="comment">(pending)</span>         <span class="comment">(planned)</span>       <span class="comment">(planned)</span>       │
+│                                                                    │
+<span class="layer">└────────────────────────────────────────────────────────────────────┘</span>
+                             <span class="arrow">│</span>
+              ┌──────────────┼──────────────┐
+              <span class="arrow">▼</span>              <span class="arrow">▼</span>              <span class="arrow">▼</span>
+<span class="layer">┌── LAYER 3 · Vertical Pages ────────────────────────────────────────┐</span>
+│                                                                    │
+│  <span class="box">/</span>              <span class="box">/demos/{niche}</span>      <span class="box">/intake</span>                     │
+│  Mothership     Reference builds    6-section AI Agent flow        │
+│                                                                    │
+<span class="layer">└────────────────────────────────────────────────────────────────────┘</span>
+                             <span class="arrow">│</span>
+              ┌──────────────┼──────────────────┐
+              <span class="arrow">▼</span>              <span class="arrow">▼</span>                  <span class="arrow">▼</span>
+<span class="layer">┌── LAYER 4 · Intake · 6 AI Agent Levels ────────────────────────────┐</span>
+│                                                                    │
+│  L1 · <span class="box">MCP</span>          → Identity (who + where connected)             │
+│  L2 · <span class="box">Single-Agent</span> → Goals (one outcome the site optimizes for)   │
+│  L3 · <span class="box">Skills</span>       → Capabilities (services + pricing catalog)   │
+│  L4 · <span class="box">Multi-Agent</span>  → Team (ecosystem + collaborators)            │
+│  L5 · <span class="box">Agentic RAG</span>  → Knowledge (credentials + proof + media)     │
+│  L6 · <span class="box">Memory</span>       → Continuity (retention + membership + family)│
+│                                                                    │
+<span class="layer">└────────────────────────────────────────────────────────────────────┘</span>
+                             <span class="arrow">│</span>
+                             <span class="arrow">▼</span>
+<span class="layer">┌── LAYER 5 · Shared Design System ──────────────────────────────────┐</span>
+│                                                                    │
+│  Type · <span class="box">Anton</span> + <span class="box">Fraunces italic</span> + <span class="box">Manrope</span> + <span class="box">JetBrains Mono</span>       │
+│  Base · <span class="box">--paper</span> #F5F1E8 · <span class="box">--ink</span> #14202E                        │
+│  Flex · Per-niche palette flex (barber = dark gold, DB = navy…)    │
+│  Grid · 11-section skeleton, mobile-first, IntersectionObserver    │
+│                                                                    │
+<span class="layer">└────────────────────────────────────────────────────────────────────┘</span></pre>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot-note">
+      Trail of Joy · Control Tower v1 · Operator Dashboard<br>
+      <b>Bookmark this URL</b> · Print-optimized · Works offline · Ships with every vertical repo
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
