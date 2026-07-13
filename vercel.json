@@ -11,7 +11,13 @@
     { "source": "/intake/personal-business", "destination": "/intake/intake-personal-business" },
 
     { "source": "/trainer", "destination": "/demos/trainer" },
-    { "source": "/barber", "destination": "/demos/barber" }
+    { "source": "/barber", "destination": "/demos/barber" },
+
+    { "source": "/small-business-os", "destination": "/premium/small-business-os" },
+    { "source": "/sb-os", "destination": "/premium/small-business-os" },
+    { "source": "/saas", "destination": "/premium/small-business-os" },
+    { "source": "/tier-3", "destination": "/premium/small-business-os" },
+    { "source": "/tier-os", "destination": "/docs/tiers/small-business-os.md" }
   ],
 
   "redirects": [
@@ -29,7 +35,13 @@
       ]
     },
     {
-      "source": "/intake(.*)",
+      "source": "/intake/:path*",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/docs/:path*",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]

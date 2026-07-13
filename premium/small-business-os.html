@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Small Business OS · The SaaS Program · Trail of Joy</title>
+<meta name="description" content="An operating system for elite small-business operators. Snapshot + system + Client Insight + Referral Edge + Local Directory. Grows into a Personal LLM you control.">
+<meta name="theme-color" content="#0A1420">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230A1420' width='100' height='100' rx='10'/%3E%3Ctext x='50' y='68' font-family='Anton,sans-serif' font-size='36' fill='%23C89848' text-anchor='middle' letter-spacing='-2'%3ESB%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#0A1420;--bg-2:#141F30;--bg-3:#1E2B3D;--bg-4:#28374B;--paper:#F5F1E8;--paper-dim:rgba(245,241,232,.72);--paper-dimmer:rgba(245,241,232,.5);--line:#2A3547;--gold:#C89848;--sage:#7BA07B;--clay:#B84D2D}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--paper);font-family:'Manrope',-apple-system,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;background:none;border:none;color:inherit}
+.shell{max-width:1200px;margin:0 auto;padding:0 24px}
+@media(min-width:900px){.shell{padding:0 40px}}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.85 0 0 0 0 0.7 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.4;mix-blend-mode:overlay}
+main,nav,section,footer{position:relative;z-index:2}
+.demo-ribbon{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--gold);color:var(--bg);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:6px}
+nav.top{position:sticky;top:26px;z-index:50;background:rgba(10,20,32,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .shell{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{width:44px;height:44px;background:var(--bg-3);color:var(--gold);border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:14px;border:1.5px solid var(--gold)}
+.brand-name .b1{font-family:'Anton',sans-serif;font-size:15px;text-transform:uppercase;letter-spacing:.02em;color:var(--paper);line-height:1.05}
+.brand-name .b2{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-weight:700;line-height:1;margin-top:2px;display:block}
+.nav-cta{background:var(--gold);color:var(--bg);padding:11px 22px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;transition:all .15s;border:1px solid var(--gold)}
+.nav-cta:hover{background:transparent;color:var(--gold)}
+h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:.88;letter-spacing:-.01em}
+h1 .italic{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);text-transform:lowercase;font-weight:400}
+h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(30px,4.5vw,52px);line-height:.98;letter-spacing:-.005em;text-transform:uppercase;margin-bottom:20px}
+h2 .italic{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);text-transform:lowercase;font-weight:400}
+h3{font-family:'Anton',sans-serif;font-weight:400;font-size:22px;letter-spacing:-.005em;text-transform:uppercase}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.kicker::before{content:'◆';color:var(--gold);font-size:9px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border:none;transition:all .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-gold:hover{background:var(--paper)}
+.btn-ghost{background:transparent;border:1.5px solid var(--gold);color:var(--gold)}
+.btn-ghost:hover{background:var(--gold);color:var(--bg)}
+.hero{padding:100px 0 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 30% 40%,rgba(200,152,72,.14) 0%,transparent 60%);pointer-events:none}
+.hero-inner{position:relative;z-index:2;max-width:960px}
+.hero h1{font-size:clamp(46px,8vw,110px);margin-bottom:26px;color:var(--paper)}
+.hero-lede{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(17px,2vw,22px);line-height:1.5;color:var(--paper-dim);max-width:720px;margin-bottom:32px}
+.hero-lede b{color:var(--gold);font-weight:400;font-style:normal;font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:-.005em}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.hero-signature{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--paper-dimmer);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.hero-signature b{color:var(--gold)}
+.tiers-section{padding:64px 0;background:var(--bg-2);border-bottom:1px solid var(--line)}
+.tiers-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px}
+@media(min-width:900px){.tiers-grid{grid-template-columns:1fr 1fr 1fr}}
+.tier{background:var(--bg-3);border:1.5px solid var(--line);border-radius:2px;padding:26px 24px;position:relative}
+.tier.featured{border-color:var(--gold);border-width:2px;background:linear-gradient(180deg,var(--bg-4),var(--bg-3))}
+.tier.featured::before{content:'';position:absolute;top:0;left:24px;right:24px;height:3px;background:var(--gold)}
+.tier-badge{display:none;position:absolute;top:-13px;left:24px;background:var(--gold);color:var(--bg);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:2px;font-weight:700}
+.tier.featured .tier-badge{display:inline-block}
+.tier-t{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+.tier-name{font-family:'Anton',sans-serif;font-size:24px;color:var(--paper);text-transform:uppercase;letter-spacing:-.005em;line-height:1;margin-bottom:6px}
+.tier-desc{font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--paper-dim);margin-bottom:16px;line-height:1.5}
+.tier-price{display:flex;align-items:baseline;gap:6px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.tier-num{font-family:'Anton',sans-serif;font-size:32px;color:var(--paper);letter-spacing:-.015em;line-height:1}
+.tier.featured .tier-num{color:var(--gold)}
+.tier-c{font-family:'Manrope',sans-serif;font-size:12px;color:var(--paper-dimmer);font-weight:500}
+.tier-list{list-style:none;font-size:13px}
+.tier-list li{padding:5px 0;color:var(--paper-dim);display:grid;grid-template-columns:auto 1fr;gap:10px;line-height:1.5}
+.tier-list li::before{content:'◆';color:var(--gold);font-size:8px;padding-top:3px}
+.levels-section{padding:80px 0;border-bottom:1px solid var(--line)}
+.levels-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:32px}
+@media(min-width:640px){.levels-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.levels-grid{grid-template-columns:repeat(3,1fr)}}
+.level{background:var(--bg-3);border:1px solid var(--line);padding:22px 22px;border-radius:2px}
+.level-n{font-family:'Anton',sans-serif;font-size:44px;color:var(--gold);letter-spacing:-.03em;line-height:.9;margin-bottom:6px;opacity:.9}
+.level-t{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.level-title{font-family:'Anton',sans-serif;font-size:20px;color:var(--paper);letter-spacing:-.005em;text-transform:uppercase;margin-bottom:8px;line-height:1}
+.level p{font-size:13.5px;color:var(--paper-dim);line-height:1.55}
+.level .map{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);font-weight:700}
+.level .map b{color:var(--paper)}
+.tools-section{padding:80px 0;background:var(--bg-2);border-bottom:1px solid var(--line)}
+.tools-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px}
+@media(min-width:768px){.tools-grid{grid-template-columns:repeat(3,1fr)}}
+.tool{background:var(--bg-3);border:1px solid var(--line);padding:26px 24px;border-radius:2px}
+.tool-icon{font-family:'Anton',sans-serif;font-size:36px;color:var(--gold);letter-spacing:-.02em;line-height:.9;margin-bottom:10px;opacity:.9}
+.tool-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.tool h3{color:var(--paper);font-size:22px;margin-bottom:10px;line-height:1.05}
+.tool p{font-size:13.5px;color:var(--paper-dim);line-height:1.6;margin-bottom:12px}
+.tool ul{list-style:none;font-size:12.5px}
+.tool ul li{padding:4px 0;color:var(--paper-dim);display:grid;grid-template-columns:auto 1fr;gap:8px;line-height:1.5}
+.tool ul li::before{content:'◆';color:var(--gold);font-size:7px;padding-top:3px}
+.who-section{padding:80px 0;border-bottom:1px solid var(--line)}
+.who-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px}
+@media(min-width:768px){.who-grid{grid-template-columns:1fr 1fr}}
+.who-card{background:var(--bg-3);border:1px solid var(--line);padding:26px 26px;border-radius:2px}
+.who-card.yes{border-left:3px solid var(--sage)}
+.who-card.no{border-left:3px solid var(--clay)}
+.who-title{font-family:'Anton',sans-serif;font-size:20px;text-transform:uppercase;letter-spacing:-.005em;margin-bottom:14px}
+.who-card.yes .who-title{color:var(--sage)}
+.who-card.no .who-title{color:var(--clay)}
+.who-list{list-style:none;font-size:13.5px}
+.who-list li{padding:6px 0;color:var(--paper-dim);display:grid;grid-template-columns:auto 1fr;gap:10px;line-height:1.5;border-bottom:1px dashed var(--line)}
+.who-list li:last-child{border-bottom:none}
+.who-list li::before{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding-top:2px}
+.who-card.yes .who-list li::before{content:'✓';color:var(--sage)}
+.who-card.no .who-list li::before{content:'✗';color:var(--clay)}
+.final-section{padding:100px 0;background:linear-gradient(180deg,var(--bg),#050b17);position:relative;overflow:hidden}
+.final-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(200,152,72,.14),transparent 65%);pointer-events:none}
+.final-inner{max-width:820px;text-align:center;margin:0 auto;position:relative;z-index:2}
+.final-inner h2{color:var(--paper);margin-bottom:18px}
+.final-lede{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(17px,2vw,22px);color:var(--paper-dim);line-height:1.5;margin-bottom:32px}
+.final-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.final-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--paper-dimmer);letter-spacing:.14em;text-transform:uppercase;margin-top:26px;font-weight:600}
+footer{background:#050b17;padding:44px 0 24px;border-top:1px solid var(--gold)}
+.foot-grid{display:flex;flex-direction:column;gap:20px;justify-content:space-between;align-items:center}
+@media(min-width:640px){.foot-grid{flex-direction:row}}
+.foot-brand{display:flex;align-items:center;gap:12px}
+.foot-brand .b1{color:var(--paper);font-family:'Anton',sans-serif;font-size:14px;text-transform:uppercase}
+.foot-brand .b2{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-top:2px;display:block}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap}
+.foot-links a{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--paper-dimmer);letter-spacing:.14em;text-transform:uppercase;font-weight:600;transition:color .15s}
+.foot-links a:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="demo-ribbon">TOJ Small Business OS · SaaS Tier · <b>The Personal LLM path</b> · Modeled on Hooks-OS pattern</div>
+<nav class="top">
+  <div class="shell">
+    <a href="/" class="brand"><span class="brand-mark">SB</span><span class="brand-name"><span class="b1">Small Business OS</span><span class="b2">SaaS · Personal LLM path</span></span></a>
+    <a href="/intake?niche=small-business-os" class="nav-cta">Start intake →</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="shell">
+    <div class="hero-inner">
+      <div class="kicker">Small Business OS · Tier 03 · Since 2026</div>
+      <h1>Your shop.<br><span class="italic">as an operating system.</span></h1>
+      <p class="hero-lede"><b>Snapshot + system + tools + Personal LLM path.</b> A private, LLM-powered command center built to the six AI Agent Levels architecture. Tuned to your voice. Grows smarter every month. Ends as a Personal LLM you control.</p>
+      <div class="hero-actions">
+        <a href="/intake?niche=small-business-os" class="btn btn-gold">Start intake →</a>
+        <a href="#levels" class="btn btn-ghost">See the architecture</a>
+      </div>
+      <div class="hero-signature">Adapted from the Hooks-OS pattern · <b>Battle-tested in the football vertical for 4 months</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="tiers-section">
+  <div class="shell">
+    <div class="kicker">The 3 tiers</div>
+    <h2>Three ways in. <span class="italic">one system.</span></h2>
+    <p style="font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--paper-dim);line-height:1.5;max-width:720px">Basic gets you on the record. Premium adds the system. Small Business OS adds the operating brain.</p>
+    <div class="tiers-grid">
+      <div class="tier">
+        <div class="tier-t">◆ Tier 01 · Basic</div>
+        <div class="tier-name">Snapshot</div>
+        <div class="tier-desc">Editorial one-page site + booking + content slots. Shipped in 14 days.</div>
+        <div class="tier-price"><span class="tier-num">$1,200</span><span class="tier-c">+ $75/mo</span></div>
+        <ul class="tier-list">
+          <li>1-page snapshot</li>
+          <li>Brand + palette match</li>
+          <li>Booking wired</li>
+          <li>Content slot editing</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-t">◆ Tier 02 · Premium</div>
+        <div class="tier-name">Snapshot + System</div>
+        <div class="tier-desc">Everything in Basic + member area + intake + quarterly reviews.</div>
+        <div class="tier-price"><span class="tier-num">$3,500</span><span class="tier-c">+ $250/mo</span></div>
+        <ul class="tier-list">
+          <li>Everything in Basic</li>
+          <li>Member area</li>
+          <li>Client intake system</li>
+          <li>Monthly content refresh</li>
+          <li>Quarterly strategy review</li>
+        </ul>
+      </div>
+      <div class="tier featured">
+        <span class="tier-badge">Small Biz OS · SaaS</span>
+        <div class="tier-t">◆ Tier 03 · Apex</div>
+        <div class="tier-name">Small Business OS</div>
+        <div class="tier-desc">Everything in Premium + private OS + Client Insight + Referral Edge + Local Directory + Personal LLM path.</div>
+        <div class="tier-price"><span class="tier-num">$8,000</span><span class="tier-c">+ $1,200/mo</span></div>
+        <ul class="tier-list">
+          <li>Everything in Premium</li>
+          <li>Private <b>{name}-os</b> repo</li>
+          <li>6-level agent architecture</li>
+          <li>Client Insight unlimited</li>
+          <li>Referral Edge unlimited</li>
+          <li>Local Directory unlimited</li>
+          <li>Monthly Personal LLM tuning</li>
+          <li>12-month min term</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="levels-section" id="levels">
+  <div class="shell">
+    <div class="kicker">The 6 AI Agent Levels architecture</div>
+    <h2>Every level. <span class="italic">every operator.</span></h2>
+    <div class="levels-grid">
+      <div class="level"><div class="level-n">1</div><div class="level-t">MCP · Model Context Protocol</div><div class="level-title">Identity + Connections</div><p>Booking, POS, socials, CRM. The OS learns them all.</p><div class="map">Folder: <b>data/</b></div></div>
+      <div class="level"><div class="level-n">2</div><div class="level-t">Single-Agent</div><div class="level-title">Business Context</div><p>Auto-loaded context every session. No re-explanation.</p><div class="map">File: <b>CLAUDE.md</b></div></div>
+      <div class="level"><div class="level-n">3</div><div class="level-t">Skills · Reusable</div><div class="level-title">Your Playbook</div><p>Voice rules · templates · service frameworks. Reusable capabilities.</p><div class="map">Folder: <b>skills/</b></div></div>
+      <div class="level"><div class="level-n">4</div><div class="level-t">Multi-Agent</div><div class="level-title">Your Funnels</div><p>Service · membership · retail funnels. Coordinated agents.</p><div class="map">Folder: <b>workflows/</b></div></div>
+      <div class="level"><div class="level-n">5</div><div class="level-t">Agentic RAG</div><div class="level-title">Your Knowledge</div><p>Client history · playbook · testimonials · vendors. Retrieved when needed.</p><div class="map">Combined: <b>data/</b> + <b>skills/</b></div></div>
+      <div class="level"><div class="level-n">6</div><div class="level-t">Memory · Continuity</div><div class="level-title">Your Personal LLM</div><p>Every correction becomes a permanent rule. Over 12 months → Personal LLM.</p><div class="map">Folder: <b>feedback/</b> + <b>improvements.md</b></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tools-section">
+  <div class="shell">
+    <div class="kicker">Included tools · Unlimited</div>
+    <h2>Three tools. <span class="italic">no add-on fees.</span></h2>
+    <div class="tools-grid">
+      <div class="tool">
+        <div class="tool-icon">◆</div>
+        <div class="tool-tag">Tool 01 · Client Ops</div>
+        <h3>Client Insight</h3>
+        <p>Deep client history · preference tracking · next-appointment recommendations. Every regular treated like a friend.</p>
+        <ul>
+          <li>Unlimited client profiles</li>
+          <li>Auto-tracked preferences</li>
+          <li>Rebooking recommendations</li>
+          <li>Anniversary / milestone alerts</li>
+        </ul>
+      </div>
+      <div class="tool">
+        <div class="tool-icon">◈</div>
+        <div class="tool-tag">Tool 02 · Growth</div>
+        <h3>Referral Edge</h3>
+        <p>Referral-source tracking · attribution ledger · repeat-customer targeting. Every referral logged. Every source measured.</p>
+        <ul>
+          <li>Unlimited referral tracking</li>
+          <li>Source attribution</li>
+          <li>Repeat-customer flags</li>
+          <li>Referral rewards optional</li>
+        </ul>
+      </div>
+      <div class="tool">
+        <div class="tool-icon">◐</div>
+        <div class="tool-tag">Tool 03 · Directory</div>
+        <h3>Local Directory</h3>
+        <p>Searchable database of local vendors · partner businesses · complementary services in your area. Cross-referral engine.</p>
+        <ul>
+          <li>Unlimited queries</li>
+          <li>Vendor + partner network</li>
+          <li>Cross-referral tracking</li>
+          <li>Local market insights</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="who-section">
+  <div class="shell">
+    <div class="kicker">Fit check · Read this carefully</div>
+    <h2>Not for everyone. <span class="italic">on purpose.</span></h2>
+    <p style="font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--paper-dim);line-height:1.5;max-width:720px">Small Business OS is high-ticket, high-touch, 12-month minimum. Built for established operators. If any "not for" lines fit you, start Basic and revisit in a year.</p>
+    <div class="who-grid">
+      <div class="who-card yes">
+        <div class="who-title">◆ Small Business OS is for you if:</div>
+        <ul class="who-list">
+          <li>5+ years in business</li>
+          <li>50+ active clients</li>
+          <li>Established personal brand</li>
+          <li>Mid-6-figure annual revenue</li>
+          <li>Trades on relationships (not transactions)</li>
+          <li>Willing to be publicly featured as a case study</li>
+          <li>Ready to commit 12 months for Personal LLM path</li>
+        </ul>
+      </div>
+      <div class="who-card no">
+        <div class="who-title">◆ Small Business OS is NOT for you if:</div>
+        <ul class="who-list">
+          <li>You're just starting out — go Basic</li>
+          <li>You're a multi-location shop (per-operator only)</li>
+          <li>You don't want an AI system running ops</li>
+          <li>You want white-label of our tools (not this)</li>
+          <li>You're on a tight budget</li>
+          <li>You want month-to-month with no commitment</li>
+          <li>Your business context is too thin to train on</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-section">
+  <div class="shell">
+    <div class="final-inner">
+      <div class="kicker" style="justify-content:center">Ready?</div>
+      <h2>Come get <span class="italic">the standard.</span></h2>
+      <p class="final-lede">The intake maps to the six AI Agent Levels. Fill it in. Book a 4-hour deep dive. Get your OS scaffolded within 30 days.</p>
+      <div class="final-actions">
+        <a href="/intake?niche=small-business-os" class="btn btn-gold">Start intake →</a>
+        <a href="https://github.com/kcumby2-wq/hooks-os" target="_blank" rel="noopener" class="btn btn-ghost">See Hooks-OS pattern</a>
+      </div>
+      <div class="final-note">$8,000 setup + $1,200/mo · 12-month minimum · Application only</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot-grid">
+      <div class="foot-brand"><span class="brand-mark">SB</span><div><div class="b1">TOJ Small Business OS</div><div class="b2">SaaS · Personal LLM</div></div></div>
+      <div class="foot-links">
+        <a href="/">TOJ Mothership</a>
+        <a href="/intake">Intake</a>
+        <a href="https://fbtrainer.tojcampaign.com/trainer-os" target="_blank" rel="noopener">Trainer OS (fbtrainer)</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
