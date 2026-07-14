@@ -17,7 +17,13 @@
     { "source": "/sb-os", "destination": "/premium/small-business-os" },
     { "source": "/saas", "destination": "/premium/small-business-os" },
     { "source": "/tier-3", "destination": "/premium/small-business-os" },
-    { "source": "/tier-os", "destination": "/docs/tiers/small-business-os.md" }
+    { "source": "/tier-os", "destination": "/docs/tiers/small-business-os.md" },
+
+    { "source": "/business-templates", "destination": "/premium/business-templates" },
+    { "source": "/templates", "destination": "/premium/business-templates" },
+    { "source": "/red-hot-problems", "destination": "/premium/business-templates" },
+    { "source": "/20-problems", "destination": "/premium/business-templates" },
+    { "source": "/matrix", "destination": "/premium/business-templates" }
   ],
 
   "redirects": [

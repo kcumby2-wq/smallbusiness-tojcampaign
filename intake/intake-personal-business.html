@@ -661,6 +661,21 @@ const STORAGE_KEY='tojSbIntake';
 (function init(){
   const params=new URLSearchParams(window.location.search);
   const preNiche=params.get('niche');
+  const preTier=params.get('tier');
+  // Pre-select tier chip if URL includes ?tier=basic|premium|small_business_os|unsure
+  if(preTier){
+    setTimeout(()=>{
+      const validTiers=['basic','premium','small_business_os','unsure'];
+      if(validTiers.includes(preTier)){
+        const radio=document.querySelector(`[name="tierChoice"][value="${preTier}"]`);
+        if(radio){
+          radio.checked=true;
+          radio.closest('.chip')?.classList.add('selected');
+          save();
+        }
+      }
+    },150);
+  }
   const saved=localStorage.getItem(STORAGE_KEY);
   if(saved){
     try{
