@@ -50,6 +50,18 @@ A private GitHub repo (like [hooks-os](https://github.com/kcumby2-wq/hooks-os) f
 - **Referral Edge** — referral-source tracking + attribution ledger + repeat-customer targeting (analogous to Prospect Edge)
 - **Local Directory** — searchable database of local vendors, partner businesses, and complementary services in your area (analogous to College Directory)
 
+### Plus · Growth Autopilot (2 loops) · NEW as of 2026-07-20
+
+Continuous experimentation running on 2 of your business surfaces — chosen at kickoff. Standard picks for personal-business operators:
+- **Loop 1:** Business IG post caption hook (or IG DM opener) · target: booking rate
+- **Loop 2:** Newsletter subject line (or Google Business Profile post) · target: open/click rate
+
+Runs autonomously via [autoresearch-os](https://github.com/kcumby2-wq/autoresearch-os) infrastructure. Weekly Friday winning-variations report delivered to your inbox. Voice-drift check against your business voice-rules on every generated variation. All winners approval-gated (Kyron OR operator approves before promotion).
+
+Standalone this product sells as **Growth Autopilot · $499/mo add-on**. Bundled in Small Business OS at no additional cost.
+
+Add a 3rd loop for $199/mo · 4th+ loop for $149/mo each.
+
 ### Plus · Personal LLM path
 
 - Progressive tuning of the OS into a Personal LLM
